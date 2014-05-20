@@ -3,7 +3,7 @@
 * Plugin Name: Speed Booster Pack
 * Plugin URI: http://tiguandesign.com
 * Description: Speed Booster Pack allows you to improve your page loading speed and get a higher score on the major speed testing services such as <a href="http://gtmetrix.com/">GTmetrix</a>, <a href="http://developers.google.com/speed/pagespeed/insights/">Google PageSpeed</a> or other speed testing tools.
-* Version: 1.0
+* Version: 1.1
 * Author: Tiguan
 * Author URI: http://themeforest.net/user/Tiguan
 * License: GPLv2

@@ -1,9 +1,10 @@
 ﻿=== Speed Booster Pack ===
 Contributors: tiguan
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EH65WAWPEYPXU
 Tags: speed, optimization, performance, speed booster, scripts to the footer, Google Libraries, CDN, defer parsing of javascript, remove query strings, GTmetrix, Google PageSpeed, YSlow
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: trunk
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,14 +14,14 @@ Features options to improve your website performance and get a higher score on t
 
 Speed Booster Pack allows you to improve your page loading speed and get a higher score on the major speed testing services such as [GTmetrix](http://gtmetrix.com/), [Google PageSpeed](http://developers.google.com/speed/pagespeed/insights/), *YSlow* or other speed testing tools.
 
-= Speed Booster Pack Features =
+= Features =
 
-* **Moves scripts to the footer** to improve page loading speed, while keeping stylesheets in the header.
+* **Moves scripts to the footer** to improve page loading speed.
 * **Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
 * **Defers parsing of javascript files** to reduce the initial load time of your page.
 * **Removes query strings from static resources** to improve your speed scores.
 * **Removes junk header tags** to clean up your WordPress Header.
-* **Page Load Stats** - is a brief statistic that displays your homepage loading speed (in seconds) and number of processed queries.
+* **Page Load Stats** - is a brief statistic displayed in the plugin options page. It displays your homepage loading speed (in seconds) and number of processed queries.
 
 **Page loading time** – the progress bar color will be:
 
@@ -40,6 +41,9 @@ For complete usage instructions visit [Plugin Documentation](http://tiguandesign
 
 1. Download the plugin (.zip file) on your hard drive.
 2. Unzip the zip file contents.
-3. Upload the `speed-booster-pack` folder to the `/wp-content/plugins/` directory of your site.
+3. Upload the `speed-booster-pack` folder to the `/wp-content/plugins/` directory.
 4. Activate the plugin through the 'Plugins' menu in WordPress.
 5. A new sub menu item `Speed Booster Pack` will appear in your main Settings menu.
+
+== Screenshots ==
+1. Plugin options page, simple view (v1.0)
