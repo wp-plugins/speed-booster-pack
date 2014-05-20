@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: speed, optimization, performance, speed booster, scripts to the footer, Google Libraries, CDN, defer parsing of javascript, remove query strings, GTmetrix, Google PageSpeed, YSlow
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,3 +47,14 @@ For complete usage instructions visit [Plugin Documentation](http://tiguandesign
 
 == Screenshots ==
 1. Plugin options page, simple view (v1.0)
+
+== Changelog ==
+
+= 1.2 =
+* Modified the plugin version number variable in plugin options page.
+
+= 1.1 =
+* Modified Readme file
+
+= 1.0 =
+* Initial release
