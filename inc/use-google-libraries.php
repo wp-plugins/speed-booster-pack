@@ -4,15 +4,18 @@
 /*	Author & copyright (c) 2008-2013 : Jason Penney (email : jpenney@jczorkmid.net ).  General Public License v.2.0 */
 
 
-if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
+if ( ! class_exists( 'JCP_UseGoogleLibraries' ) ) {
 
 	class JCP_UseGoogleLibraries {
 
-		private static $instance;
-		private static $version = '1.5.2';
+		protected static $instance;
+		protected static $plugin_file = __FILE__;
+		protected static $version = '1.6dev';
+		protected static $noconflict_inject = "<script type='text/javascript'>try{jQuery.noConflict();}catch(e){};</script>\n";
+
 		public static function get_instance() {
-			if ( !isset( self::$instance ) ) {
-				self::$instance =  new JCP_UseGoogleLibraries();
+			if ( ! isset( self::$instance ) ) {
+				self::$instance = new JCP_UseGoogleLibraries();
 			}
 			return self::$instance;
 		}
@@ -60,7 +63,8 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 
 		/**
 		 * True if using a version of WordPress that allows
-		 * `wp_register_script` to take protocol-relative URLs, otherwise False
+		 * `wp_register_script` to take protocol-relative URLs,
+		 * otherwise False
 		 *
 		 * @since 1.5.2
 		 *
@@ -83,117 +87,138 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 		protected static $cache_len = 90000; // 25 hours
 
 		/**
-		 * Message displayed and logged when a WP_Scripts has been created before it's time
+		 * Message displayed and logged when a WP_Scripts has been created
+		 * before it's time
 		 *
-		 * @var unknown_type
+		 * @var str
 		 */
 		protected static $script_before_init_notice =
 			'Another plugin has registered or enqued a script before the "init" action.  Attempting to work around it.';
 
 		/**
-		 * PHP 4 Compatible Constructor
+		 * Registry of scripts available from Google Libraries.  Any extra
+		 * scripts listed here not provided by WordPress or another plugin
+		 * will not be registered.  This list is just used to chancge where
+		 * things load from.
+		 *
+		 * Entries are in the format:
+		 * <code>
+		 * 'script-handle' => array(
+		 *     'google-lib-path',
+		 *     'google-file-name',
+		 *     'google-combined-into'
+		 * )
+		 * </code>
+		 *
+		 * @var array
 		 */
-		function JCP_UseGoogleLibraries() {$this->__construct();}
+		protected static $default_google_scripts = array(
+			/* jQuery */
+			'jquery' => array( 'jquery', 'jquery.min', '' ),
+
+			/* jQuery UI */
+			'jquery-ui-core' => array( 'jqueryui', 'jquery-ui.min', '' ),
+			'jquery-ui-accordion' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-autocomplete' => array( '', '', 'jquery-ui-core' ), /* jQueri UI 1.8 */
+			'jquery-ui-button' => array( '', '', 'jquery-ui-core' ), /* jQuery UI 1.8 */
+			'jquery-ui-datepicker' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-dialog' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-draggable' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-droppable' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-menu' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-mouse' => array( '', '', 'jquery-ui-core' ),  /* jQuery UI 1.8 */
+			'jquery-ui-position' => array( '', '', 'jquery-ui-core' ),  /* jQuery UI 1.8 */
+			'jquery-ui-progressbar' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-resizable' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-selectable' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-slider' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-sortable' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-tabs' => array( '', '', 'jquery-ui-core' ),
+			'jquery-ui-widget' => array( '', '', 'jquery-ui-core' ),  /* jQuery UI 1.8 */
+
+			/* jQuery Effects */
+			'jquery-effects-core' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-blind' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-bounce' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-clip' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-drop' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-explode' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-fade' => array( '', '', 'jquery-ui-core' ),  /* jQuery UI 1.8 */
+			'jquery-effects-fold' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-highlight' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-pulsate' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-scale' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-shake' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-slide' => array( '', '', 'jquery-ui-core' ),
+			'jquery-effects-transfer' => array( '', '', 'jquery-ui-core' ),
+
+			/* prototype */
+			'prototype' => array( 'prototype', 'prototype', '' ),
+
+			/* scriptaculous */
+			'scriptaculous-root' => array( 'scriptaculous', 'scriptaculous', '' ),
+			'scriptaculous-builder' => array( '', '', 'scriptaculous-root' ),
+			'scriptaculous-effects' => array( '', '', 'scriptaculous-root' ),
+			'scriptaculous-dragdrop' => array( '', '', 'scriptaculous-root' ),
+			'scriptaculous-controls' => array( '', '', 'scriptaculous-root' ),
+			'scriptaculous-slider' => array( '', '', 'scriptaculous-root' ),
+			'scriptaculous-sound' => array( '', '', 'scriptaculous-root' ),
+
+			/* moo tools */
+			'mootools' => array( 'mootools', 'mootools-yui-compressed', '' ),
+
+			/* Dojo */
+			'dojo' => array( 'dojo', 'dojo.xd', '' ),
+
+			/* swfobject */
+			'swfobject' => array( 'swfobject', 'swfobject', '' ),
+
+			/* YUI */
+			'yui' => array( 'yui', 'build/yuiloader/yuiloader-min', '' ),
+
+			/* Ext Core */
+			'ext-core' => array( 'ext-core', 'ext-core', '' )
+
+		);
 
 		/**
 		 * PHP 5 Constructor
 		 */
 		function __construct() {
-			$this->jquery_tag = 'jquery';
-			$this->google_scripts =
-				array(
-				// any extra scripts listed here not provided by WordPress
-				// or another plugin will not be registered.  This list
-				// is just used to chancge where things load from.
+			$this->jquery_tag     = 'jquery';
+			$this->google_scripts = self::$default_google_scripts;
 
-				// 'script-handle' => ( 'google-lib-path', 'google-file-name', 'google-combined-into')
-				/* jQuery */
-				'jquery' => array( 'jquery', 'jquery.min', '' ),
-
-				/* jQuery UI */
-				'jquery-ui-core' => array( 'jqueryui', 'jquery-ui.min', '' ),
-				'jquery-ui-accordion' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-autocomplete' => array( '', '', 'jquery-ui-core' ), /* jQueri UI 1.8 */
-				'jquery-ui-button' => array( '', '', 'jquery-ui-core' ), /* jQuery UI 1.8 */
-				'jquery-ui-datepicker' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-dialog' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-draggable' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-droppable' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-menu' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-mouse' => array( '', '', 'jquery-ui-core' ),  /* jQuery UI 1.8 */
-				'jquery-ui-position' => array( '', '', 'jquery-ui-core' ),  /* jQuery UI 1.8 */
-				'jquery-ui-progressbar' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-resizable' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-selectable' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-slider' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-sortable' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-tabs' => array( '', '', 'jquery-ui-core' ),
-				'jquery-ui-widget' => array( '', '', 'jquery-ui-core' ),  /* jQuery UI 1.8 */
-
-				/* jQuery Effects */
-				'jquery-effects-core' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-blind' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-bounce' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-clip' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-drop' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-explode' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-fade' => array( '', '', 'jquery-ui-core' ),  /* jQuery UI 1.8 */
-				'jquery-effects-fold' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-highlight' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-pulsate' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-scale' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-shake' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-slide' => array( '', '', 'jquery-ui-core' ),
-				'jquery-effects-transfer' => array( '', '', 'jquery-ui-core' ),
-
-				/* prototype */
-				'prototype' => array( 'prototype', 'prototype', '' ),
-
-				/* scriptaculous */
-				'scriptaculous-root' => array( 'scriptaculous', 'scriptaculous', '' ),
-				'scriptaculous-builder' => array( '', '', 'scriptaculous-root' ),
-				'scriptaculous-effects' => array( '', '', 'scriptaculous-root' ),
-				'scriptaculous-dragdrop' => array( '', '', 'scriptaculous-root' ),
-				'scriptaculous-controls' => array( '', '', 'scriptaculous-root' ),
-				'scriptaculous-slider' => array( '', '', 'scriptaculous-root' ),
-				'scriptaculous-sound' => array( '', '', 'scriptaculous-root' ),
-
-				/* moo tools */
-				'mootools' => array( 'mootools', 'mootools-yui-compressed', '' ),
-
-				/* Dojo */
-				'dojo' => array( 'dojo', 'dojo.xd', '' ),
-
-				/* swfobject */
-				'swfobject' => array( 'swfobject', 'swfobject', '' ),
-
-				/* YUI */
-				'yui' => array( 'yui', 'build/yuiloader/yuiloader-min', '' ),
-
-				/* Ext Core */
-				'ext-core' => array( 'ext-core', 'ext-core', '' )
-
-			);
 			$this->noconflict_next = FALSE;
 			// protocol-relative URLS accepted by `wp_register_scripts`
 			// starting with version 3.5
-			$this->protocol_relative_supported = version_compare( get_bloginfo( 'version' ), '3.5', '>=' );
+			$this->protocol_relative_supported = version_compare(
+				get_bloginfo( 'version' ), '3.5', '>='
+			);
 		}
 
 		static function configure_plugin() {
-			add_action( 'wp_default_scripts',
-				array( 'JCP_UseGoogleLibraries',
-					'replace_default_scripts_action' ),
-				1000 );
-			add_filter( 'script_loader_src',
-				array( "JCP_UseGoogleLibraries", "remove_ver_query_filter" ),
-				1000 );
-			add_filter( 'init', array( "JCP_UseGoogleLibraries", "setup_filter" ) );
+			add_action(
+				'wp_default_scripts',
+				array(
+					'JCP_UseGoogleLibraries',
+					'replace_default_scripts_action',
+				),
+				1000
+			);
+			add_filter(
+				'script_loader_src',
+				array( 'JCP_UseGoogleLibraries', 'remove_ver_query_filter' ),
+				1000
+			);
+			add_filter(
+				'init',
+				array( 'JCP_UseGoogleLibraries', 'setup_filter' )
+			);
 
-			// There's a chance some plugin has called wp_enqueue_script outside
-			// of any hooks, which means that this plugin's 'wp_default_scripts'
-			// hook will never get a chance to fire.  This tries to work around
-			// that.
+			// There's a chance some plugin has called wp_enqueue_script
+			// outside of any hooks, which means that this plugin's
+			// 'wp_default_scripts' hook will never get a chance to fire.
+			// This tries to work around that.
 			global $wp_scripts;
 			if ( is_a( $wp_scripts, 'WP_Scripts' ) ) {
 				self::debug( self::$script_before_init_notice );
@@ -203,11 +228,14 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 		}
 
 		/**
-		 * Get markup to show error message in admin when $WP_Script created befor it's time
+		 * Get markup to show error message in admin when $WP_Script
+		 * created before it's time
+		 *
 		 * @returns string markup for notice display
 		 */
 		static function script_before_init_admin_notice() {
-			echo '<div class="error fade"><p>Use Google Libraries: ' . self::$script_before_init_notice . '</p></div>';
+			echo '<div class="error fade"><p>Use Google Libraries: ' .
+				self::$script_before_init_notice . '</p></div>';
 		}
 
 		static function setup_filter() {
@@ -225,9 +253,9 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 		static function debug( $message ) {
 			if ( WP_DEBUG !== false ) {
 				if ( is_array( $message ) || is_object( $message ) ) {
-					$message = print_r( $message, true );
+					$message = var_export( $message, true );
 				}
-				error_log( "Use Google Libraries: " . $message );
+				error_log( 'Use Google Libraries: ' . $message );
 			}
 		}
 
@@ -241,10 +269,52 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 
 		}
 
-
 		static function replace_default_scripts_action( &$scripts ) {
 			$ugl = self::get_instance();
 			$ugl->replace_default_scripts( $scripts );
+		}
+
+		/**
+		 * Sometimes WordPress registes `jquery.js` as `'jquery-core'`, while
+		 * '`jquery`' is some other script with a dependency on
+		 * `'jquery-core'`.  If '`jquery-core`' in present in `$scripts`
+		 * this is assumed to be the case and update the registration for
+		 * '`jquery-core`' instead.
+		 *
+		 * @since 1.6
+		 *
+		 * @param object  $scripts
+		 */
+		protected function newscripts_fix_jquery_core( &$scripts ) {
+			// jquery may really be loaded under jquery-core
+			// if so, we'll adjust google_scripts here
+			if ( $scripts->query( 'jquery-core' ) && array_key_exists( 'jquery', $this->google_scripts ) ) {
+				$this->google_scripts['jquery-core'] = $this->google_scripts['jquery'];
+				unset( $this->google_scripts['jquery'] );
+				$this->jquery_tag = 'jquery-core';
+			}
+		}
+
+		protected function newscripts_build_url( $name, $lib, $ver, $js, $orig_url ) {
+
+			// if $lib is empty, then this script does not need to be
+			// exlicitly loaded when using googleapis.com, but we need to keep
+			// it around for dependencies
+			if ( $lib != '' ) {
+				// build new URL
+				$url  = "//ajax.googleapis.com/ajax/libs/$lib/$ver/$js.js";
+				$head = wp_remote_head( "http:$url" );
+				if ( wp_remote_retrieve_response_code( $head ) !== 200 ) {
+					self::debug( "Google servers do not seem to be hosting requested version of $name (version $ver). Using version provided by WordPress." );
+					return $orig_url;
+				}
+				if ( ! $this->protocol_relative_supported ) {
+					return "http:$url";
+				}
+				return $url;
+			} else {
+				return '';
+			}
 		}
 
 		/**
@@ -265,13 +335,7 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 			$newscripts = array();
 			$combine_ok = array();
 
-			// jquery may really be loaded under jquery-core
-			// if so, we'll adjust google_scripts here
-			if ( $scripts->query( 'jquery-core' ) && array_key_exists( 'jquery', $this->google_scripts ) ) {
-				$this->google_scripts['jquery-core'] = $this->google_scripts['jquery'];
-				unset($this->google_scripts['jquery']);
-				$this->jquery_tag = 'jquery-core';
-			}
+			$this->newscripts_fix_jquery_core( $scripts );
 
 			foreach ( $this->google_scripts as $name => $values ) {
 				if ( $script = $scripts->query( $name ) ) {
@@ -304,23 +368,10 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 						}
 					}
 
-					// if $lib is empty, then this script does not need to be
-					// exlicitly loaded when using googleapis.com, but we need to keep
-					// it around for dependencies
-					if ( $lib != '' ) {
-						// build new URL
-						$url = "//ajax.googleapis.com/ajax/libs/$lib/$ver/$js.js";
-						if ( wp_remote_retrieve_response_code( wp_remote_head( "http:$url" ) ) !== 200 ) {
-							self::debug( "Google servers do not seem to be hosting requested version of $name (version $ver). Using version provided by WordPress." );
-							continue;
-						}
-						if ( ! $this->protocol_relative_supported ) {
-							$url = "http:$url";
-						}
-						$script->src = $url;
-					} else {
-						$script->src = "";
-					}
+					$script->src = $this->newscripts_build_url(
+						$name, $lib, $ver, $js, $script->src
+					);
+
 					$newscripts[] = $script;
 					$combine_ok[] = $name;
 				}
@@ -381,7 +432,7 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 		function replace_default_scripts( &$scripts ) {
 			$newscripts = $this->get_newscripts( $scripts );
 			foreach ( $newscripts as $script ) {
-				$olddata = $this->WP_Dependency_get_data( $scripts, $script->handle );
+				$olddata = $this->wp_dependency_get_data( $scripts, $script->handle );
 				$scripts->remove( $script->handle );
 				// re-register with original ver
 				$scripts->add( $script->handle, $script->src, $script->deps, $script->ver );
@@ -394,18 +445,18 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 		}
 
 
-		function WP_Dependency_get_data( $dep_obj, $handle, $data_name = false ) {
+		function wp_dependency_get_data( $dep_obj, $handle, $data_name = false ) {
 
-			if ( !method_exists( $dep_obj, 'add_data' ) )
+			if ( ! method_exists( $dep_obj, 'add_data' ) )
 				return false;
 
-			if ( !isset( $dep_obj->registered[$handle] ) )
+			if ( ! isset( $dep_obj->registered[$handle] ) )
 				return false;
 
-			if ( !$data_name )
+			if ( ! $data_name )
 				return $dep_obj->registered[$handle]->extra;
 
-			if ( !method_exists( $dep_obj, 'get_data' ) )
+			if ( ! method_exists( $dep_obj, 'get_data' ) )
 				return $dep_obj->registered[$handle]->extra[$data_name];
 
 			return $dep_obj->get_data( $handle, $data_name );
@@ -422,11 +473,11 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 		function remove_ver_query( $src ) {
 			if ( $this->noconflict_next ) {
 				$this->noconflict_next = FALSE;
-				echo "<script type='text/javascript'>try{jQuery.noConflict();}catch(e){};</script>\n";
+				echo self::$noconflict_inject; // xss ok
 			}
 			if ( preg_match( '/ajax\.googleapis\.com\//', $src ) ) {
 				$src = remove_query_arg( 'ver', $src );
-				if ( strpos( $src, $this->google_scripts[$this->jquery_tag][1] . ".js" ) ) {
+				if ( strpos( $src, $this->google_scripts[$this->jquery_tag][1] . '.js' ) ) {
 					$this->noconflict_next = TRUE;
 				}
 			}
@@ -434,7 +485,7 @@ if ( !class_exists( 'JCP_UseGoogleLibraries' ) ) {
 		}
 
 		static function remove_ver_query_filter( $src ) {
-			$ugl =  self::get_instance();
+			$ugl = self::get_instance();
 			return $ugl->remove_ver_query( $src );
 		}
 	}
