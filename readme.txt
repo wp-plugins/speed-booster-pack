@@ -50,6 +50,9 @@ For complete usage instructions visit [Plugin Documentation](http://tiguandesign
 
 == Changelog ==
 
+= 1.3 =
+* Fixed strict standards error: redefining already defined constructor for class.
+
 = 1.2 =
 * Modified the plugin version number variable in plugin options page.
 
