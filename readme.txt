@@ -26,7 +26,6 @@ When visitors lands on your site for the first time, you only have a 3 seconds t
 
 = Main Plugin Features =
 
-
 * **Moves scripts to the footer** to improve page loading speed.
 * **Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
 * **Defers parsing of javascript files** to reduce the initial load time of your page.
