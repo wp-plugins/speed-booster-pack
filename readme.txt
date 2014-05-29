@@ -24,7 +24,7 @@ When visitors lands on your site for the first time, you only have a 3 seconds t
 * 40% of people will abandon a site that takes more than 3 seconds to load
 * 80% of online consumers are less likely to return to a slow website
 
-= Features =
+= Main Plugin Features =
 
 * **Moves scripts to the footer** to improve page loading speed.
 * **Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
