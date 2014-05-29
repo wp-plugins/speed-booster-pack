@@ -12,7 +12,18 @@ Features options to improve your website performance and get a higher score on t
 
 == Description ==
 
-Speed Booster Pack allows you to improve your page loading speed and get a higher score on the major speed testing services such as [GTmetrix](http://gtmetrix.com/), [Google PageSpeed](http://developers.google.com/speed/pagespeed/insights/), *YSlow* or other speed testing tools.
+Speed Booster Pack allows you to improve your page loading speed and get a higher score on the major speed testing services such as [GTmetrix](http://gtmetrix.com/), [Google PageSpeed](http://developers.google.com/speed/pagespeed/insights/), [YSlow](https://developer.yahoo.com/yslow/), [Pingdom](http://tools.pingdom.com/fpt/), [Webpagetest](http://www.webpagetest.org/) or other speed testing tools.
+
+= Every Second Matters =
+
+When visitors lands on your site for the first time, you only have a 3 seconds to capture their attention and convince them to stick around.
+
+= Why Site Speed Is Important =
+
+>* Google incorporating site speed in search rankings
+* 47% of online consumers expect a web page to load in 2 seconds or less
+* 40% of people will abandon a site that takes more than 3 seconds to load
+* 80% of online consumers are less likely to return to a slow website
 
 = Features =
 
