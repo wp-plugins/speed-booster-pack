@@ -26,12 +26,15 @@ When visitors lands on your site for the first time, you only have a 3 seconds t
 
 = Main Plugin Features =
 
-* Moves scripts to the footer to improve page loading speed.
-* Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
-* Defers parsing of javascript files to reduce the initial load time of your page.
-* Removes query strings from static resources to improve your speed scores.
-* Removes junk header tags to clean up your WordPress Header.
-* Page Load Stats - is a brief statistic displayed in the plugin options page. It displays your homepage loading speed (in seconds) and number of processed queries.
+* **Moves scripts to the footer** to improve page loading speed.
+* **Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
+* **Defers parsing of javascript files** to reduce the initial load time of your page.
+* **Removes query strings from static resources** to improve your speed scores.
+* **Removes junk header tags** to clean up your WordPress Header.
+
+= Page Load Stats =
+
+Page Load Stats is a brief statistic displayed in the plugin options page. It displays your homepage loading speed (in seconds) and number of processed queries.
 
 **Page loading time** – the progress bar color will be:
 
