@@ -40,6 +40,11 @@
                             <label for="sbp_settings[query_strings]"><?php _e( 'Remove query strings from static resources', 'sb-pack' ); ?></label>
                         </p>
 
+                         <p>
+                            <input id="sbp_settings[font_awesome]" name="sbp_settings[font_awesome]" type="checkbox" value="1" <?php checked( 1, isset( $sbp_options['font_awesome'] ) ); ?> />
+                            <label for="sbp_settings[font_awesome]"><?php _e( 'Removes additional Font Awesome stylesheets', 'sb-pack' ); ?></label>
+                        </p>
+
                     </div> <!-- END welcome-panel-column -->
 
 
@@ -65,6 +70,12 @@
                             <input id="sbp_settings[wml_link]" name="sbp_settings[wml_link]" type="checkbox" value="1" <?php checked( 1, isset( $sbp_options['wml_link'] ) ); ?> />
                             <label for="sbp_settings[wml_link]"><?php _e( 'Remove Windows Live Writer Manifest', 'sb-pack' ); ?></label>
                         </p>
+
+                        <p>
+                            <input id="sbp_settings[wp_generator]" name="sbp_settings[wp_generator]" type="checkbox" value="1" <?php checked( 1, isset( $sbp_options['wp_generator'] ) ); ?> />
+                            <label for="sbp_settings[wp_generator]"><?php _e( 'Remove the WordPress Version Number', 'sb-pack' ); ?></label>
+                        </p>
+
                     </div> <!-- END welcome-panel-column -->
 
 

@@ -9,6 +9,7 @@ if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
 
 			global $sbp_options;
 
+            add_action( 'wp_enqueue_scripts',  array( $this, 'sbp_no_more_fontawesome'), 9999 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'sbp_move_scripts_to_footer' ) );
 			add_action( 'wp_footer', array( $this, 'sbp_show_page_load_stats' ), 999 );
 			add_action('after_setup_theme', array( $this, 'sbp_junk_header_tags' ) );
@@ -138,6 +139,31 @@ return $rqsfsr[0];
 
 
 /*----------------------------------------------
+	Dequeue extra Font Awesome stylesheet
+-----------------------------------------------*/
+
+function sbp_no_more_fontawesome() {
+	global $wp_styles;
+	global $sbp_options;
+
+	// we'll use preg_match to find only the following patterns as exact matches, to prevent other plugin stylesheets that contain font-awesome expression to be also dequeued
+	$patterns = array(
+		'font-awesome.css',
+		'font-awesome.min.css'
+		);
+	//	multiple patterns hook
+	$regex = '/(' .implode('|', $patterns) .')/i';
+	foreach( $wp_styles -> registered as $registered ) {
+		if( !is_admin() and preg_match( $regex, $registered->src) and isset( $sbp_options['font_awesome'] ) ) {
+			wp_dequeue_style( $registered->handle );
+			// FA was dequeued, so here we need to enqueue it again from CDN
+			wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' );
+		}	//	END if( preg_match...
+	}	//	END foreach
+}	//	End function dfa_no_more_fontawesome
+
+
+/*----------------------------------------------
     Remove junk header tags
 -----------------------------------------------*/
 
@@ -163,6 +189,11 @@ public function sbp_junk_header_tags() {
 	//	Remove WordPress Shortlinks from WP Head
 	if ( isset( $sbp_options['remove_wsl'] ) ) {
 		remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+	}
+
+	//	Remove WP Generator/Version - for security reasons and cleaning the header
+	if ( isset( $sbp_options['wp_generator'] ) ) {
+	remove_action('wp_head', 'wp_generator');
 	}
 
 }	//	END public function sbp_junk_header_tags

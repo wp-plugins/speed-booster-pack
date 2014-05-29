@@ -2,12 +2,11 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Project-Id-Version: Speed Booster Pack 1.0\n"
+"Project-Id-Version: Speed Booster Pack 1.4\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Liviu Costache <tiguan@tiguandesign.com>\n"
-"Language-Team: Tiguandesign <tiguan@tiguandesign.com>\n"
+"Language-Team:  <tiguan@tiguandesign.com>\n"
 "MIME-Version: 1.0\n"
 "Language: en\n"
 "X-Generator: Poedit 1.6.5\n"
@@ -16,7 +15,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:125
+#: speed-booster-pack/inc/template/options.php:136
 msgid " with guidelines to modify/enhance your website."
 msgstr ""
 
@@ -26,7 +25,7 @@ msgid "Defer parsing of javascript files"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:142
+#: speed-booster-pack/inc/template/options.php:153
 msgid "Installed Version:"
 msgstr ""
 
@@ -46,52 +45,52 @@ msgid "Move scripts to the footer"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:87
+#: speed-booster-pack/inc/template/options.php:98
 msgid "Number of executed queries:"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:73
+#: speed-booster-pack/inc/template/options.php:84
 msgid "Page Load Stats"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:75
+#: speed-booster-pack/inc/template/options.php:86
 msgid "Page loading time:"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:125
+#: speed-booster-pack/inc/template/options.php:136
 msgid "Read online plugin documentation"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:149
+#: speed-booster-pack/inc/template/options.php:160
 msgid "Released date:"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:61
+#: speed-booster-pack/inc/template/options.php:66
 msgid "Remove Adjacent Posts Links"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:51
+#: speed-booster-pack/inc/template/options.php:56
 msgid "Remove RSD Link"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:66
+#: speed-booster-pack/inc/template/options.php:71
 msgid "Remove Windows Live Writer Manifest"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:56
+#: speed-booster-pack/inc/template/options.php:61
 msgid "Remove WordPress Shortlink"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:47
+#: speed-booster-pack/inc/template/options.php:52
 msgid "Remove junk header tags"
 msgstr ""
 
@@ -101,26 +100,36 @@ msgid "Remove query strings from static resources"
 msgstr ""
 
 #. Text in echo
+#: speed-booster-pack/inc/template/options.php:76
+msgid "Remove the WordPress Version Number"
+msgstr ""
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:45
+msgid "Removes additional Font Awesome stylesheets"
+msgstr ""
+
+#. Text in echo
 #: speed-booster-pack/inc/template/options.php:15
 msgid "Speed Up Your Website!"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:131
+#: speed-booster-pack/inc/template/options.php:142
 msgid "Version Information"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:115
+#: speed-booster-pack/inc/template/options.php:126
 msgid "What do these settings mean?"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:95
+#: speed-booster-pack/inc/template/options.php:106
 msgid "q"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:83
+#: speed-booster-pack/inc/template/options.php:94
 msgid "s"
 msgstr ""

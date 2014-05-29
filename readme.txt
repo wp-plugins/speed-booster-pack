@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: speed, optimization, performance, speed booster, scripts to the footer, Google Libraries, CDN, defer parsing of javascript, remove query strings, GTmetrix, Google PageSpeed, YSlow
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,7 @@ When visitors lands on your site for the first time, you only have a 3 seconds t
 * **Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
 * **Defers parsing of javascript files** to reduce the initial load time of your page.
 * **Removes query strings from static resources** to improve your speed scores.
+* **Removes extra Font Awesome stylesheets** added to your theme by certain plugins, if *Font Awesome* is already used in your theme.
 * **Removes junk header tags** to clean up your WordPress Header.
 
 = Page Load Stats =
@@ -59,9 +60,12 @@ For complete usage instructions visit [Plugin Documentation](http://tiguandesign
 5. A new sub menu item `Speed Booster Pack` will appear in your main Settings menu.
 
 == Screenshots ==
-1. Plugin options page, simple view (v1.0)
+1. Plugin options page, simple view (v1.4)
 
 == Changelog ==
+
+= 1.4 =
+* Added two features options: one to remove extra Font Awesome stylesheets added to your theme by certain plugins, if Font Awesome is already used in your theme and the other to remove WordPress Version Number.
 
 = 1.3 =
 * Fixed strict standards error: redefining already defined constructor for class.
