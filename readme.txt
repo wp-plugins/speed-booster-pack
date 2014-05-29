@@ -16,7 +16,7 @@ Speed Booster Pack allows you to improve your page loading speed and get a highe
 
 = Why Site Speed Is Important =
 
-When visitors lands on your site for the first time, you only have a 3 seconds to capture their attention and convince them to stick around.
+When visitors lands on your site for the first time, you only have a 3 seconds to capture their attention and convince them to stick around. That's not convinced you? Read on:
 
 
 >* Google incorporating site speed in search rankings
