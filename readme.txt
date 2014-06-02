@@ -49,8 +49,10 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 * *orange* if there were between 100 and 200 queries
 * *red* if the page required more than 200 queries
 
-For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
-Thanks to [Jason Penney](http://jasonpenney.net/) for Google Libraries feature.
+= Other Notes =
+
+* For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
+* Thanks to [Jason Penney](http://jasonpenney.net/) for Google Libraries feature.
 
 == Installation ==
 
