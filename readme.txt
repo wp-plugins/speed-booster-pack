@@ -29,7 +29,7 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 * **Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
 * **Defers parsing of javascript files** to reduce the initial load time of your page.
 * **Removes query strings from static resources** to improve your speed scores.
-* **Lazy load images to improve page load times and save bandwidth.
+* **Lazy load images** to improve page load times and save bandwidth.
 * **Removes extra Font Awesome stylesheets** added to your theme by certain plugins, if *Font Awesome* is already used in your theme.
 * **Removes junk header tags** to clean up your WordPress Header.
 
