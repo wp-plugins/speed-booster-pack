@@ -212,6 +212,12 @@ public function sbp_junk_header_tags() {
 	remove_action('wp_head', 'wp_generator');
 	}
 
+	//	Remove all feeds
+	if ( isset( $sbp_options['remove_all_feeds'] ) ) {
+	remove_action( 'wp_head', 'feed_links_extra', 3 );	// remove the feed links from the extra feeds such as category feeds
+	remove_action( 'wp_head', 'feed_links', 2 );		// remove the feed links from the general feeds: Post and Comment Feed
+	}
+
 }	//	END public function sbp_junk_header_tags
 
 

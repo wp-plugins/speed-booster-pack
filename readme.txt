@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: speed, optimization, performance, speed booster, scripts to the footer, Google Libraries, CDN, defer parsing of javascript, remove query strings, GTmetrix, Google PageSpeed, YSlow
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 1.5
+Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,9 +65,12 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 5. A new sub menu item `Speed Booster Pack` will appear in your main Settings menu.
 
 == Screenshots ==
-1. Plugin options page, simple view (v1.4)
+1. Plugin options page, simple view (v1.6)
 
 == Changelog ==
+
+= 1.6 =
+* Fixed some errors and missed codes plugin fuctions.
 
 = 1.5 =
 * Added Lazy Load feature to improve the web page loading times of your images.
