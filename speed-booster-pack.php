@@ -3,7 +3,7 @@
 * Plugin Name: Speed Booster Pack
 * Plugin URI: http://wordpress.org/plugins/speed-booster-pack/
 * Description: Speed Booster Pack allows you to improve your page loading speed and get a higher score on the major speed testing services such as <a href="http://gtmetrix.com/">GTmetrix</a>, <a href="http://developers.google.com/speed/pagespeed/insights/">Google PageSpeed</a> or other speed testing tools.
-* Version: 1.4
+* Version: 1.5
 * Author: Tiguan
 * Author URI: http://tiguandesign.com
 * License: GPLv2
@@ -38,7 +38,7 @@ $sbp_options = get_option( 'sbp_settings', 'checked' );	// retrieve the plugin s
 
 define( 'SPEED_BOOSTER_PACK_RELEASE_DATE', date_i18n( 'F j, Y', '1400569200' ) );	// Defining plugin release date
 define( 'SPEED_BOOSTER_PACK_PATH', plugin_dir_path( __FILE__ ) );					// Defining plugin dir path
-define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.4');										// Defining plugin version
+define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.5');										// Defining plugin version
 
 
 /*----------------------------------------------
@@ -69,6 +69,9 @@ define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.4');										// Defining plugin versi
 
 		// Enqueue admin style
 		add_action( 'admin_enqueue_scripts',  array( $this, 'sbp_enqueue_styles' ) );
+
+		// Enqueue frontend scripts
+		add_action( 'wp_enqueue_scripts', array( $this, 'sbp_enqueue_scripts' ) );
 
 		// Filters
 		$this->path = plugin_basename( __FILE__ );
@@ -120,6 +123,19 @@ define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.4');										// Defining plugin versi
 
 		}	//	End function sbp_enqueue_styles
 
+
+/*----------------------------------------------
+	Enqueue Lazy Load scripts
+----------------------------------------------*/
+
+	static function sbp_enqueue_scripts() {
+
+		if ( !is_admin() and isset( $sbp_options['lazy_load'] ) ) {
+
+			wp_enqueue_script( 'sbp-lazy-load-images',  plugin_dir_url( __FILE__ ) . 'js/sbp-lazy-load.js', array( 'jquery', 'sbp-jquery-sonar' ), SPEED_BOOSTER_PACK_VERSION, true );
+			wp_enqueue_script( 'sbp-jquery-sonar',  plugin_dir_url( __FILE__ ) . 'js/jquery.sonar.min.js', array( 'jquery' ), SPEED_BOOSTER_PACK_VERSION, true );
+		}
+	}
 
 /*----------------------------------------------
 	Add settings link on plugins page

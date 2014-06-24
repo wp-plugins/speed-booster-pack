@@ -45,6 +45,11 @@
                             <label for="sbp_settings[font_awesome]"><?php _e( 'Removes additional Font Awesome stylesheets', 'sb-pack' ); ?></label>
                         </p>
 
+                          <p>
+                            <input id="sbp_settings[lazy_load]" name="sbp_settings[lazy_load]" type="checkbox" value="1" <?php checked( 1, isset( $sbp_options['lazy_load'] ) ); ?> />
+                            <label for="sbp_settings[lazy_load]"><?php _e( 'Lazy load images to improve page load times', 'sb-pack' ); ?></label>
+                        </p>
+
                     </div> <!-- END welcome-panel-column -->
 
 

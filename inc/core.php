@@ -19,6 +19,11 @@ if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
 				$this->sbp_use_google_libraries();
 			}
 
+			//	Use Google Libraries
+			if ( !is_admin() and isset( $sbp_options['lazy_load'] ) ) {
+				$this->sbp_lazy_load_for_images();
+			}
+
 			//	Defer parsing of JavaScript
 			if ( !is_admin() and isset( $sbp_options['defer_parsing'] ) ) {
 				add_filter( 'clean_url', array( $this, 'sbp_defer_parsing_of_js' ), 11, 1 );
@@ -89,14 +94,25 @@ function sbp_show_page_load_stats() {
 
 function sbp_use_google_libraries() {
 
-		require_once( SPEED_BOOSTER_PACK_PATH . 'inc/use-google-libraries.php' );
+	require_once( SPEED_BOOSTER_PACK_PATH . 'inc/use-google-libraries.php' );
 
-		if ( class_exists( 'JCP_UseGoogleLibraries' ) ) {
-			JCP_UseGoogleLibraries::configure_plugin();
+	if ( class_exists( 'JCP_UseGoogleLibraries' ) ) {
+		JCP_UseGoogleLibraries::configure_plugin();
 
-		}
+	}
 
 }	//	End function sbp_use_google_libraries()
+
+
+/*----------------------------------------------
+    Lazy Load for images
+-----------------------------------------------*/
+
+function sbp_lazy_load_for_images() {
+
+	require_once( SPEED_BOOSTER_PACK_PATH . 'inc/lazy-load.php' );
+
+}	//	End function sbp_lazy_load_for_images()
 
 
 /*----------------------------------------------

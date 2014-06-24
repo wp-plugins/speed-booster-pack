@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: speed, optimization, performance, speed booster, scripts to the footer, Google Libraries, CDN, defer parsing of javascript, remove query strings, GTmetrix, Google PageSpeed, YSlow
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,7 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 * **Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
 * **Defers parsing of javascript files** to reduce the initial load time of your page.
 * **Removes query strings from static resources** to improve your speed scores.
+* **Lazy load images to improve page load times and save bandwidth.
 * **Removes extra Font Awesome stylesheets** added to your theme by certain plugins, if *Font Awesome* is already used in your theme.
 * **Removes junk header tags** to clean up your WordPress Header.
 
@@ -52,6 +53,8 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 
 * For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
 * Thanks to [Jason Penney](http://jasonpenney.net/) for Google Libraries feature.
+* Credits for Lazy Load feature belongs to: WordPress.com VIP team at Automattic, the TechCrunch 2011 Redesign team, and Jake Goldman (10up LLC).
+* Uses [jQuery.sonar](http://www.artzstudio.com/files/jquery-boston-2010/jquery.sonar/) by Dave Artz (AOL).
 
 == Installation ==
 
@@ -66,8 +69,14 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 
 == Changelog ==
 
+= 1.5 =
+* Added Lazy Load feature to improve the web page loading times of your images.
+* Added an option to remove all rss feed links from WP Head.
+* Added plugin options informations to the footer, visible in page source, useful for debugging.
+
 = 1.4 =
-* Added two features options: one to remove extra Font Awesome stylesheets added to your theme by certain plugins, if Font Awesome is already used in your theme and the other to remove WordPress Version Number.
+* Added a new option to remove extra Font Awesome stylesheets added to your theme by certain plugins, if Font Awesome is already used in your theme.
+* Added a new option to remove WordPress Version Number.
 
 = 1.3 =
 * Fixed strict standards error: redefining already defined constructor for class.
