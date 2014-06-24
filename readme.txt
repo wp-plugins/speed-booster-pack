@@ -70,7 +70,7 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 == Changelog ==
 
 = 1.6 =
-* Fixed some errors and missed codes plugin fuctions.
+* Fixed some errors and missed codes from plugin fuctions.
 
 = 1.5 =
 * Added Lazy Load feature to improve the web page loading times of your images.
