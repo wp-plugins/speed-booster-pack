@@ -18,7 +18,6 @@ Speed Booster Pack allows you to improve your page loading speed and get a highe
 
 When visitors lands on your site for the first time, you only have 3 seconds to capture their attention and convince them to stick around. That's not convinced you? Read on:
 
-
 * Google incorporating site speed in search rankings
 * 47% of online consumers expect a web page to load in 2 seconds or less
 * 40% of people will abandon a site that takes more than 3 seconds to load
