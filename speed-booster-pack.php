@@ -26,33 +26,34 @@
     FOUNDATION, INC., 51 FRANKLIN ST, FIFTH FLOOR, BOSTON, MA  02110-1301  USA
 */
 
-/*----------------------------------------------
+/*----------------------------------------------------------------------------------------------------------
 	Global Variables
-----------------------------------------------*/
+-----------------------------------------------------------------------------------------------------------*/
 
 $sbp_options = get_option( 'sbp_settings', 'checked' );	// retrieve the plugin settings from the options table
 
-/*----------------------------------------------
+/*----------------------------------------------------------------------------------------------------------
 	Define some useful plugin constants
-----------------------------------------------*/
+-----------------------------------------------------------------------------------------------------------*/
 
 define( 'SPEED_BOOSTER_PACK_RELEASE_DATE', date_i18n( 'F j, Y', '1400569200' ) );	// Defining plugin release date
 define( 'SPEED_BOOSTER_PACK_PATH', plugin_dir_path( __FILE__ ) );					// Defining plugin dir path
 define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.5');										// Defining plugin version
+define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining plugin name
 
 
-/*----------------------------------------------
+/*----------------------------------------------------------------------------------------------------------
 	Main Plugin Class
-----------------------------------------------*/
+-----------------------------------------------------------------------------------------------------------*/
 
 	if ( !class_exists( 'Speed_Booster_Pack' ) ) {
 
 		class Speed_Booster_Pack {
 
 
-/*----------------------------------------------
+/*----------------------------------------------------------------------------------------------------------
 	Function Construct
-----------------------------------------------*/
+-----------------------------------------------------------------------------------------------------------*/
 
 	public function __construct() {
 
@@ -73,6 +74,9 @@ define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.5');										// Defining plugin versi
 		// Enqueue frontend scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'sbp_enqueue_scripts' ) );
 
+		// Render debugging information
+		add_action( 'wp_footer', array( $this, 'sbp_debugg' ), 999 );
+
 		// Filters
 		$this->path = plugin_basename( __FILE__ );
 		add_filter( "plugin_action_links_$this->path", array( $this, 'sbp_settings_link' ) );
@@ -80,9 +84,9 @@ define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.5');										// Defining plugin versi
 		}	// END public function __construct
 
 
-/*----------------------------------------------
+/*----------------------------------------------------------------------------------------------------------
 	Activate the plugin
-----------------------------------------------*/
+-----------------------------------------------------------------------------------------------------------*/
 
 	public static function activate() {
 
@@ -100,18 +104,18 @@ define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.5');										// Defining plugin versi
 	} // END public static function activate
 
 
-/*----------------------------------------------
+/*----------------------------------------------------------------------------------------------------------
 	Deactivate the plugin
-----------------------------------------------*/
+-----------------------------------------------------------------------------------------------------------*/
 
 	public static function deactivate() {
 			// Nothing to do yet
 		} // END public static function deactivate
 
 
-/*----------------------------------------------
+/*----------------------------------------------------------------------------------------------------------
 	CSS style of the plugin options page
-----------------------------------------------*/
+-----------------------------------------------------------------------------------------------------------*/
 
 	function sbp_enqueue_styles( $hook ) {
 
@@ -124,22 +128,27 @@ define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.5');										// Defining plugin versi
 		}	//	End function sbp_enqueue_styles
 
 
-/*----------------------------------------------
+/*----------------------------------------------------------------------------------------------------------
 	Enqueue Lazy Load scripts
-----------------------------------------------*/
+-----------------------------------------------------------------------------------------------------------*/
 
 	static function sbp_enqueue_scripts() {
 
+		global $sbp_options;
+
 		if ( !is_admin() and isset( $sbp_options['lazy_load'] ) ) {
 
-			wp_enqueue_script( 'sbp-lazy-load-images',  plugin_dir_url( __FILE__ ) . 'js/sbp-lazy-load.js', array( 'jquery', 'sbp-jquery-sonar' ), SPEED_BOOSTER_PACK_VERSION, true );
-			wp_enqueue_script( 'sbp-jquery-sonar',  plugin_dir_url( __FILE__ ) . 'js/jquery.sonar.min.js', array( 'jquery' ), SPEED_BOOSTER_PACK_VERSION, true );
+			// We combined 'jquery.sonar.js' and 'lazy-load.js' (commented out below) in a single minified file to reduce the number of js files.
+			wp_enqueue_script( 'sbp-lazy-load-images',  plugin_dir_url( __FILE__ ) . 'js/sbp-lazy-load.min.js', array( 'jquery' ), SPEED_BOOSTER_PACK_VERSION, true );
+
+			// wp_enqueue_script( 'sbp-lazy-load-images',  plugin_dir_url( __FILE__ ) . 'js/lazy-load.js', array( 'jquery', 'sbp-jquery-sonar' ), SPEED_BOOSTER_PACK_VERSION, true );
+			// wp_enqueue_script( 'sbp-jquery-sonar',  plugin_dir_url( __FILE__ ) . 'js/jquery.sonar.js', array( 'jquery' ), SPEED_BOOSTER_PACK_VERSION, true );
 		}
 	}
 
-/*----------------------------------------------
+/*----------------------------------------------------------------------------------------------------------
 	Add settings link on plugins page
-----------------------------------------------*/
+-----------------------------------------------------------------------------------------------------------*/
 
 	function sbp_settings_link( $links ) {
 
@@ -149,6 +158,42 @@ define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.5');										// Defining plugin versi
 
 		}	//	End function sbp_settings_link
 
+
+/*----------------------------------------------------------------------------------------------------------
+	Render the plugin name, its version and active options in page source, useful for debugging
+-----------------------------------------------------------------------------------------------------------*/
+
+		function sbp_debugg() {
+
+			global $sbp_options;
+
+			echo '<!-- We need this for debugging our ' . SPEED_BOOSTER_PACK_NAME . ' ' . SPEED_BOOSTER_PACK_VERSION . ' -->' . "\n";
+
+			if ( isset( $sbp_options['jquery_to_footer'] ) ) {
+				echo '<!-- Move scripts to the footer: active -->' . "\n";
+			}	//	End if
+
+			if ( isset( $sbp_options['use_google_libs'] ) ) {
+				echo '<!-- Load JS from Google Libraries: active -->' . "\n";
+			}	//	End if
+
+			if ( isset( $sbp_options['defer_parsing'] ) ) {
+				echo '<!-- Defer parsing of javascript files: active -->' . "\n";
+			}	//	End if
+
+			if ( isset( $sbp_options['query_strings'] ) ) {
+				echo '<!-- Remove query strings from static resources: active -->' . "\n";
+			}	//	End if
+
+			if ( isset( $sbp_options['lazy_load'] ) ) {
+				echo '<!-- Lazy load images to improve page load times: active -->' . "\n";
+			}	//	End if
+
+			if ( isset( $sbp_options['font_awesome'] ) ) {
+				echo '<!-- Removes additional Font Awesome stylesheets: active -->' . "\n";
+			}	//	End if
+
+		}	//	End function sbp_debugg
 
 	}	//	End class Speed_Booster_Pack
 

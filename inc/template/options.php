@@ -40,15 +40,17 @@
                             <label for="sbp_settings[query_strings]"><?php _e( 'Remove query strings from static resources', 'sb-pack' ); ?></label>
                         </p>
 
+                          <p>
+                            <input id="sbp_settings[lazy_load]" name="sbp_settings[lazy_load]" type="checkbox" value="1" <?php checked( 1, isset( $sbp_options['lazy_load'] ) ); ?> />
+                            <label for="sbp_settings[lazy_load]"><?php _e( 'Lazy load images to improve page load times', 'sb-pack' ); ?></label>
+                        </p>
+
                          <p>
                             <input id="sbp_settings[font_awesome]" name="sbp_settings[font_awesome]" type="checkbox" value="1" <?php checked( 1, isset( $sbp_options['font_awesome'] ) ); ?> />
                             <label for="sbp_settings[font_awesome]"><?php _e( 'Removes additional Font Awesome stylesheets', 'sb-pack' ); ?></label>
                         </p>
 
-                          <p>
-                            <input id="sbp_settings[lazy_load]" name="sbp_settings[lazy_load]" type="checkbox" value="1" <?php checked( 1, isset( $sbp_options['lazy_load'] ) ); ?> />
-                            <label for="sbp_settings[lazy_load]"><?php _e( 'Lazy load images to improve page load times', 'sb-pack' ); ?></label>
-                        </p>
+
 
                     </div> <!-- END welcome-panel-column -->
 
@@ -81,6 +83,11 @@
                             <label for="sbp_settings[wp_generator]"><?php _e( 'Remove the WordPress Version Number', 'sb-pack' ); ?></label>
                         </p>
 
+                        <p>
+                            <input id="sbp_settings[remove_all_feeds]" name="sbp_settings[remove_all_feeds]" type="checkbox" value="1" <?php checked( 1, isset( $sbp_options['remove_all_feeds'] ) ); ?> />
+                            <label for="sbp_settings[remove_all_feeds]"><?php _e( 'Remove all rss feed links from WP Head', 'sb-pack' ); ?></label>
+                        </p>
+
                     </div> <!-- END welcome-panel-column -->
 
 
@@ -88,7 +95,7 @@
 
                         <h4> <?php _e( 'Page Load Stats', 'sb-pack' ); ?></h4>
 
-                        <span class="sbp-stats"><?php _e( 'Page loading time:', 'sb-pack' ); ?></span>
+                        <span class="sbp-stats"><?php _e( 'Page loading time in seconds:', 'sb-pack' ); ?></span>
 
                         <div class="sbp-progress time">
                             <span></span>
@@ -111,6 +118,10 @@
                                 <?php echo $page_queries; ?> <?php _e( 'q', 'sb-pack' ); ?>
                             </div>
                         </div>
+
+                        <div class="php-version">
+                         <strong><?php _e( 'PHP Version:', 'sb-pack' ); ?></strong> <span><?php echo PHP_VERSION; ?>&nbsp;/&nbsp;<?php echo (PHP_INT_SIZE * 8) . __('Bit OS'); ?></span>
+                     </div>
 
                     </div> <!-- END welcome-panel-column  welcome-panel-last -->
 
