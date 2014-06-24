@@ -65,7 +65,7 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 5. A new sub menu item `Speed Booster Pack` will appear in your main Settings menu.
 
 == Screenshots ==
-1. Plugin options page, simple view (v1.6)
+1. Plugin options page, simple view (v1.7)
 
 == Changelog ==
 
