@@ -33,7 +33,7 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 * **Removes extra Font Awesome stylesheets** added to your theme by certain plugins, if *Font Awesome* is already used in your theme.
 * **Removes junk header tags** to clean up your WordPress Header.
 
-___
+<hr/>
 
 = Page Load Stats =
 
