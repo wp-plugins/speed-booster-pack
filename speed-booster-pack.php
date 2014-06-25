@@ -167,7 +167,7 @@ define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining
 
 			global $sbp_options;
 
-			echo '<!-- We need this for debugging our ' . SPEED_BOOSTER_PACK_NAME . ' ' . SPEED_BOOSTER_PACK_VERSION . ' -->' . "\n";
+			echo '<!-- We need this for debugging themes using ' . SPEED_BOOSTER_PACK_NAME . ' ' . SPEED_BOOSTER_PACK_VERSION . ' -->' . "\n";
 
 			if ( isset( $sbp_options['jquery_to_footer'] ) ) {
 				echo '<!-- Move scripts to the footer: active -->' . "\n";
