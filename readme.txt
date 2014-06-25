@@ -33,8 +33,6 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 * **Removes extra Font Awesome stylesheets** added to your theme by certain plugins, if *Font Awesome* is already used in your theme.
 * **Removes junk header tags** to clean up your WordPress Header.
 
-<hr/>
-
 = Page Load Stats =
 
 Page Load Stats is a brief statistic displayed in the plugin options page. It displays your homepage loading speed (in seconds) and number of processed queries.
