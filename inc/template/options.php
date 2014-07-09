@@ -134,6 +134,21 @@
 <h3><?php _e( 'Change the default image compression level', 'sb-pack' ); ?></h3>
 
 <script type='text/javascript'>
+jQuery(document).ready(function () {
+    jQuery(".sbp-slider").slider({
+        value: jpegCompression,
+        min: 0,
+        max: 100,
+        step: 1,
+        slide: function (event, ui) {
+            jQuery(".sbp-amount").val(ui.value);
+            jQuery("#sbp_integer").val(ui.value);
+        }
+    });
+    jQuery(".sbp-amount").val(jQuery(".sbp-slider").slider("value"));
+});
+</script>
+<script type='text/javascript'>
 var jpegCompression = '<?php echo $this->image_compression; ?>';
 </script>
 
@@ -249,19 +264,20 @@ var jpegCompression = '<?php echo $this->image_compression; ?>';
 </div> <!-- end wrap div -->
 
 <script>
-if (typeof(jQuery)!='undefined'){
-jQuery(document).ready(function (){
-validate();
-jQuery('input').change(function (){
-validate();
-})
-});
-function validate(){
-if (jQuery('input[id=sbp_css_async]').is(':checked')){
-jQuery('#sbp-css-content').show();
-}else{
-jQuery('#sbp-css-content').hide();
-}
-}
-}
+    if (typeof (jQuery) != 'undefined') {
+        jQuery(document).ready(function () {
+            validate();
+            jQuery('input').change(function () {
+                validate();
+            })
+        });
+
+        function validate() {
+            if (jQuery('input[id=sbp_css_async]').is(':checked')) {
+                jQuery('#sbp-css-content').show();
+            } else {
+                jQuery('#sbp-css-content').hide();
+            }
+        }
+    }
 </script>

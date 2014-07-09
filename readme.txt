@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: speed, optimization, performance, scripts to the footer, google libraries, font awesome cdn, defer parsing of javascript, remove query strings, lazy load images, gtmetrix, google pageSpeed, yslow, eliminate external render-blocking javascript and css, compression, async, render-blocking css
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 1.8
+Stable tag: 1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,11 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 1. Plugin options page, simple view (v1.8)
 
 == Changelog ==
+
+= 1.9 =
+* Fix: breaking the SEO by Yoast plugin interface (perhaps as well as to others too). Thanks @JahLive for the bug report.
+* Added an except for the admin toolbar css since the Load CSS asynchronously option removes its dashicons and stylesheets.
+
 
 = 1.8 =
 * Added option to load CSS asynchronously to render your page more quickly and get a higher score on the major speed testing services

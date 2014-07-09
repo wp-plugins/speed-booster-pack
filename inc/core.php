@@ -20,6 +20,10 @@ if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
 
 			$this->sbp_css_optimizer(); // CSS Optimizer functions
 
+			if ( isset( $sbp_options['sbp_css_async'] ) ) {
+				add_action( 'wp_head', array( $this, 'sbp_except_admin_bar_css' ) );
+			}
+
 			//	Use Google Libraries
 			if ( !is_admin() and isset( $sbp_options['use_google_libs'] ) ) {
 				$this->sbp_use_google_libraries();
@@ -64,6 +68,7 @@ if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
 			add_filter( 'jpeg_quality', array( $this, 'filter_image_quality' ) );
 			add_filter( 'wp_editor_set_quality', array( $this, 'filter_image_quality' ) );
 
+
 		}  //  END public public function __construct
 
 
@@ -80,6 +85,17 @@ function sbp_init() {
 		add_action( 'wp_footer', array( $this, 'sbp_print_delayed_styles' ), SBP_FOOTER+1 );
 	}
 
+}
+
+
+/*--------------------------------------------------------------------------------------------------------
+    Add except for the admin toolbar css since the Async CSS removes the dashicons from the toolbar.
+---------------------------------------------------------------------------------------------------------*/
+
+function sbp_except_admin_bar_css() {
+	    wp_enqueue_style( 'open-sans' );
+		wp_enqueue_style( 'dashicons' );
+		wp_enqueue_style( 'admin-bar' );
 }
 
 
