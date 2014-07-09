@@ -93,9 +93,13 @@ function sbp_init() {
 ---------------------------------------------------------------------------------------------------------*/
 
 function sbp_except_admin_bar_css() {
-	    wp_enqueue_style( 'open-sans' );
+
+	if ( is_admin_bar_showing() ) { // enqueue the admin tolbar styles only if active
+		wp_enqueue_style( 'open-sans' );
 		wp_enqueue_style( 'dashicons' );
 		wp_enqueue_style( 'admin-bar' );
+	}
+
 }
 
 

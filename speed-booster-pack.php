@@ -3,7 +3,7 @@
 * Plugin Name: Speed Booster Pack
 * Plugin URI: http://wordpress.org/plugins/speed-booster-pack/
 * Description: Speed Booster Pack allows you to improve your page loading speed and get a higher score on the major speed testing services such as <a href="http://gtmetrix.com/">GTmetrix</a>, <a href="http://developers.google.com/speed/pagespeed/insights/">Google PageSpeed</a> or other speed testing tools.
-* Version: 1.9
+* Version: 2.0
 * Author: Tiguan
 * Author URI: http://tiguandesign.com
 * License: GPLv2
@@ -38,7 +38,7 @@ $sbp_options = get_option( 'sbp_settings', 'checked' );	// retrieve the plugin s
 
 define( 'SPEED_BOOSTER_PACK_RELEASE_DATE', date_i18n( 'F j, Y', '1400569200' ) );	// Defining plugin release date
 define( 'SPEED_BOOSTER_PACK_PATH', plugin_dir_path( __FILE__ ) );					// Defining plugin dir path
-define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.9');										// Defining plugin version
+define( 'SPEED_BOOSTER_PACK_VERSION', 'v2.0');										// Defining plugin version
 define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining plugin name
 define( 'SBP_FOOTER', 9999999 );													// Defining css position
 
