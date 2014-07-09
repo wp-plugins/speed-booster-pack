@@ -76,7 +76,7 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 == Changelog ==
 
 = 1.9 =
-* Fix: breaking the SEO by Yoast plugin interface (perhaps as well as to others too). Thanks @JahLive for the bug report.
+* Fix: breaking the SEO by Yoast plugin interface (perhaps as well as to others too). Thanks [@JahLive](http://profiles.wordpress.org/jahlive/) for the bug report.
 * Added an except for the admin toolbar css since the Load CSS asynchronously option removes its dashicons and stylesheets.
 
 
