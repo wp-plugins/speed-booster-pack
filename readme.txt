@@ -1,7 +1,7 @@
 ﻿=== Speed Booster Pack ===
 Contributors: tiguan
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EH65WAWPEYPXU
-Tags: speed, optimization, performance, scripts to the footer, Google Libraries, Font Awesome CDN, defer parsing of javascript, remove query strings, lazy load images, GTmetrix, Google PageSpeed, YSlow, eliminate external render-blocking javascript and CSS, compression, async, render-blocking CSS
+Tags: speed, optimization, performance, scripts to the footer, google libraries, font awesome cdn, defer parsing of javascript, remove query strings, lazy load images, gtmetrix, google pageSpeed, yslow, eliminate external render-blocking javascript and css, compression, async, render-blocking css
 Requires at least: 3.6
 Tested up to: 3.9.1
 Stable tag: 1.8
@@ -25,12 +25,12 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 
 = Main Plugin Features =
 
-* **Eliminates external render-blocking javascript and css** in above-the-fold content to speed up your site.
-* **Moves scripts to the footer** to improve page loading speed and eliminate external render-blocking javascript.
-* **Load CSS asynchronously** to render your page more quickly and get a higher score on the major speed testing services.
+* **Eliminates external render-blocking javascript and css** in above-the-fold content.
+* **Moves scripts to the footer** to improve page loading speed.
+* **Loads CSS asynchronously** to render your page more quickly and get a higher score on the major speed testing services.
 * **Minify and inline all CSS styles and move them to the footer** to eliminate external render-blocking CSS and optimize CSS delivery.
 * **Lazy loads images** to improve page load times and save bandwidth.
-* **Changes image compression level** to help your pages load faster and keep file sizes smaller.
+* **Changes image compression level** to keep file sizes smaller and speed up your pages.
 * **Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
 * **Defers parsing of javascript files** to reduce the initial load time of your page.
 * **Removes query strings from static resources** to improve your speed scores.
@@ -59,9 +59,8 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 = Other Notes =
 
 For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
-Translations included:
+* Translators are welcome! Translations included:
 * *Romanian ro_RO*
-* Translators are welcome!
 
 == Installation ==
 
