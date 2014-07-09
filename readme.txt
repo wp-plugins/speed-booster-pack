@@ -30,7 +30,7 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 * **Loads CSS asynchronously** to render your page more quickly and get a higher score on the major speed testing services.
 * **Minify and inline all CSS styles and move them to the footer** to eliminate external render-blocking CSS and optimize CSS delivery.
 * **Lazy loads images** to improve page load times and save bandwidth.
-* **Changes image compression level** to keep file sizes smaller and speed up your pages.
+* **Changes image compression level** to keep file sizes smaller.
 * **Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
 * **Defers parsing of javascript files** to reduce the initial load time of your page.
 * **Removes query strings from static resources** to improve your speed scores.
@@ -58,7 +58,7 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 
 = Other Notes =
 
-For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
+* For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
 * Translators are welcome! Translations included:
 * *Romanian ro_RO*
 
