@@ -21,6 +21,7 @@ if( !class_exists( 'Speed_Booster_Pack_Options' ) ) {
     public function sbp_admin_init() {
 
         register_setting( 'speed_booster_settings_group', 'sbp_settings' );
+        register_setting( 'speed_booster_settings_group', 'sbp_integer' );
 
         }  //  END public function admin_init
 
@@ -46,11 +47,17 @@ if( !class_exists( 'Speed_Booster_Pack_Options' ) ) {
 
         global $sbp_options;
 
-        //  Global variables used to show the front end page speed and processed queries, in plugin options page
+        //  Global variables used in plugin options page
         $url = get_site_url();
         $page_time = get_option( 'sbp_page_time' );
         $page_queries = get_option( 'sbp_page_queries' );
         $response = wp_remote_get( $url, array()  );
+
+        if ( get_option( 'sbp_integer' ) ) {
+            $this->image_compression = get_option( 'sbp_integer' );
+        } else {
+            $this->image_compression = 90;
+        }
 
          // Render the plugin options page HTML
         include( SPEED_BOOSTER_PACK_PATH . 'css/dynamic-css.php' );
@@ -59,6 +66,7 @@ if( !class_exists( 'Speed_Booster_Pack_Options' ) ) {
         include( SPEED_BOOSTER_PACK_PATH . 'inc/template/options.php' );
 
         } // END public function sbp_plugin_settings_page()
+
 
 
     }   //  END class Speed_Booster_Pack_Options

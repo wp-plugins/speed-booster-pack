@@ -1,9 +1,12 @@
 <?php
 
+/*--------------------------------------------------------------------------------------------------------
+    Plugin Core Functions
+---------------------------------------------------------------------------------------------------------*/
+
 if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
 
 	class Speed_Booster_Pack_Core {
-
 
 		public function __construct() {
 
@@ -12,7 +15,10 @@ if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
             add_action( 'wp_enqueue_scripts',  array( $this, 'sbp_no_more_fontawesome'), 9999 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'sbp_move_scripts_to_footer' ) );
 			add_action( 'wp_footer', array( $this, 'sbp_show_page_load_stats' ), 999 );
-			add_action('after_setup_theme', array( $this, 'sbp_junk_header_tags' ) );
+			add_action( 'after_setup_theme', array( $this, 'sbp_junk_header_tags' ) );
+	    	add_action( 'init', array( $this, 'sbp_init') );
+
+			$this->sbp_css_optimizer(); // CSS Optimizer functions
 
 			//	Use Google Libraries
 			if ( !is_admin() and isset( $sbp_options['use_google_libs'] ) ) {
@@ -54,7 +60,122 @@ if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
 				add_filter( 'style_loader_src', array( $this, 'sbp_remove_query_strings_3' ), 15, 1 );
 			}
 
+			// JPEG  Compression filter
+			add_filter( 'jpeg_quality', array( $this, 'filter_image_quality' ) );
+			add_filter( 'wp_editor_set_quality', array( $this, 'filter_image_quality' ) );
+
 		}  //  END public public function __construct
+
+
+/*--------------------------------------------------------------------------------------------------------
+    Init the CSS Optimizer actions
+---------------------------------------------------------------------------------------------------------*/
+
+function sbp_init() {
+
+	global $sbp_options;
+
+	if ( isset( $sbp_options['sbp_css_async'] ) ) {
+		add_action( 'wp_print_styles', array( $this, 'sbp_print_styles' ), SBP_FOOTER );
+		add_action( 'wp_footer', array( $this, 'sbp_print_delayed_styles' ), SBP_FOOTER+1 );
+	}
+
+}
+
+
+/*--------------------------------------------------------------------------------------------------------
+    Get image quality value if it's set. Otherwise it's set to 90
+---------------------------------------------------------------------------------------------------------*/
+
+function filter_image_quality() {
+
+	if ( get_option( 'sbp_integer' ) ) {
+		$sbp_compression = get_option( 'sbp_integer' );
+	} else {
+		$sbp_compression = 90;
+	}
+
+	return $sbp_compression;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------
+    ACTION wp_print_styles
+---------------------------------------------------------------------------------------------------------*/
+
+function sbp_print_styles() {
+    global $sbp_styles_are_async;
+    global $sbp_styles;
+	global $sbp_options;
+
+    if ( is_admin() || !empty( $sbp_styles_are_async ) ) {
+        return;
+    }
+
+	if ( isset( $sbp_options['sbp_css_minify'] ) ) {
+		$minify = true;
+	}else{
+		$minify = false;
+	}
+
+    $sbp_styles_are_async = true;
+
+    $sbp_styles = sbp_generate_styles_list();
+
+if ( !isset( $sbp_options['sbp_footer_css'] ) ) {
+
+	$not_inlined = array();
+
+        foreach ( $sbp_styles as $style ) {
+            echo "<style type=\"text/css\" ".($style['media'] ? "media=\"{$style['media']}\"" : '' ).">";
+            if (!sbp_inline_css($style['src'],$minify)){
+                $not_inlined[] = $style;
+            }
+            echo "</style>";
+        }
+        if ( !empty( $not_inlined) ) {
+            foreach ( $not_inlined as $style ){
+                ?><link rel="stylesheet"  href="<?php echo $style['src']?>" type="text/css" <?php echo $style['media'] ? "media=\"{$style['media']}\"" : ''?> /><?php
+            }
+        }
+    }
+
+    sbp_unregister_styles();
+}
+
+
+/*--------------------------------------------------------------------------------------------------------
+    ACTION wp_footer
+---------------------------------------------------------------------------------------------------------*/
+
+function sbp_print_delayed_styles() {
+
+    global $sbp_styles;
+	global $sbp_options;
+
+	if ( isset( $sbp_options['sbp_css_minify'] ) ) {
+		$minify = true;
+	}else{
+		$minify = false;
+	}
+
+if ( isset( $sbp_options['sbp_footer_css'] ) ) {
+
+            $not_inlined = array();
+            foreach ( $sbp_styles as $style ) {
+                echo "<style type=\"text/css\" ".($style['media'] ? "media=\"{$style['media']}\"" : '' ).">";
+                if ( !sbp_inline_css($style['src'],$minify) ) {
+                    $not_inlined[] = $style;
+                }
+                echo "</style>";
+            }
+            if ( !empty( $not_inlined ) ) {
+                foreach ( $not_inlined as $style ) {
+                    ?><link rel="stylesheet"  href="<?php echo $style['src']?>" type="text/css" <?php echo $style['media'] ? "media=\"{$style['media']}\"" : ''?> /><?php
+                }
+            }
+        }
+}
 
 
 /*--------------------------------------------------------------------------------------------------------
@@ -76,9 +197,9 @@ function sbp_move_scripts_to_footer() {
 }	//  END function sbp_move_scripts_to_footer
 
 
-/*----------------------------------------------
+/*--------------------------------------------------------------------------------------------------------
     Show Number of Queries and Page Load Time
------------------------------------------------*/
+---------------------------------------------------------------------------------------------------------*/
 
 function sbp_show_page_load_stats() {
 	$timer_stop = timer_stop( 0, 2 );	//	to display milliseconds instead of seconds usethe following:	$timer_stop = 1000 * ( float ) timer_stop( 0, 4 );
@@ -88,25 +209,25 @@ function sbp_show_page_load_stats() {
 }
 
 
-/*----------------------------------------------
+/*--------------------------------------------------------------------------------------------------------
     Use Google Libraries
------------------------------------------------*/
+---------------------------------------------------------------------------------------------------------*/
 
 function sbp_use_google_libraries() {
 
 	require_once( SPEED_BOOSTER_PACK_PATH . 'inc/use-google-libraries.php' );
 
-	if ( class_exists( 'JCP_UseGoogleLibraries' ) ) {
-		JCP_UseGoogleLibraries::configure_plugin();
+	if ( class_exists( 'SBP_GoogleLibraries' ) ) {
+		SBP_GoogleLibraries::configure_plugin();
 
 	}
 
 }	//	End function sbp_use_google_libraries()
 
 
-/*----------------------------------------------
+/*--------------------------------------------------------------------------------------------------------
     Lazy Load for images
------------------------------------------------*/
+---------------------------------------------------------------------------------------------------------*/
 
 function sbp_lazy_load_for_images() {
 
@@ -115,9 +236,20 @@ function sbp_lazy_load_for_images() {
 }	//	End function sbp_lazy_load_for_images()
 
 
-/*----------------------------------------------
+/*--------------------------------------------------------------------------------------------------------
+    CSS Optimizer
+---------------------------------------------------------------------------------------------------------*/
+
+function sbp_css_optimizer() {
+
+	require_once( SPEED_BOOSTER_PACK_PATH . 'inc/css-optimizer.php' );
+
+}	//	End function sbp_css_optimizer()
+
+
+/*--------------------------------------------------------------------------------------------------------
     Defer parsing of JavaScript
------------------------------------------------*/
+---------------------------------------------------------------------------------------------------------*/
 
 function sbp_defer_parsing_of_js ( $url ) {
 
@@ -134,9 +266,9 @@ function sbp_defer_parsing_of_js ( $url ) {
 }	//	END function sbp_defer_parsing_of_js
 
 
-/*----------------------------------------------
+/*--------------------------------------------------------------------------------------------------------
     Remove query strings from static resources
------------------------------------------------*/
+---------------------------------------------------------------------------------------------------------*/
 
 function sbp_remove_query_strings_1( $src ) {	//	remove "?ver" string
 $rqsfsr = explode( '?ver', $src );
@@ -154,9 +286,9 @@ return $rqsfsr[0];
 }
 
 
-/*----------------------------------------------
+/*--------------------------------------------------------------------------------------------------------
 	Dequeue extra Font Awesome stylesheet
------------------------------------------------*/
+---------------------------------------------------------------------------------------------------------*/
 
 function sbp_no_more_fontawesome() {
 	global $wp_styles;
@@ -179,9 +311,9 @@ function sbp_no_more_fontawesome() {
 }	//	End function dfa_no_more_fontawesome
 
 
-/*----------------------------------------------
+/*--------------------------------------------------------------------------------------------------------
     Remove junk header tags
------------------------------------------------*/
+---------------------------------------------------------------------------------------------------------*/
 
 public function sbp_junk_header_tags() {
 
@@ -219,7 +351,6 @@ public function sbp_junk_header_tags() {
 	}
 
 }	//	END public function sbp_junk_header_tags
-
 
 	}   //  END class Speed_Booster_Pack_Core
 

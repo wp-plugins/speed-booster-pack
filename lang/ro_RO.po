@@ -2,7 +2,8 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
+"2:1));\n"
 "Project-Id-Version: Speed Booster Pack\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
@@ -12,13 +13,13 @@ msgstr ""
 "X-Generator: Poedit 1.6.6\n"
 "X-Poedit-KeywordsList: _e;__\n"
 "X-Poedit-Basepath: .\n"
-"Language: en\n"
+"Language: ro\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:213
 msgid " with guidelines to enhance your website performance."
-msgstr ""
+msgstr "care conţine îndrumari pentru a îmbunătăți performanța site-ul tău."
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:182
@@ -29,76 +30,82 @@ msgid ""
 "enabling this sensitive option, it is strongly recommended that you also "
 "enable the \"Move scripts to the footer\" option."
 msgstr ""
+"*Încărcând toate stilurile CSS inline în partea de jos a site-ului va "
+"elimina avertizarea din testul Google Page Speed despre JavaScript şi CSS "
+"care blochează redarea conţinutului. Dacă designul site-ului este afectat "
+"sau ceva nu funcţionează după activare, va trebui să dezactivezi această "
+"opţiune. Te rugăm să reţii că înainte de a activă această opţiune sensibilă, "
+"este obligatoriu să ai activată si opţiunea \"Mutaţi script-uri în footer\"."
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:123
 msgid "Active Plugins:"
-msgstr ""
+msgstr "Pluginuri Active:"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:15
 msgid "Boost Your Website Speed!"
-msgstr ""
+msgstr "Sporeşte-ţi viteza site-ului!"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:134
 msgid "Change the default image compression level"
-msgstr ""
+msgstr "Schimbă nivelul de compresie al imaginilor"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:143
 msgid "Compression level:"
-msgstr ""
+msgstr "Nivelul de compresie:"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:36
 msgid "Defer parsing of javascript files"
-msgstr ""
+msgstr "Amână analizarea fişierelor javascript"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:95
 msgid "Home Page Load Stats"
-msgstr ""
+msgstr "Încărcarea paginii de bază"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:179
 msgid "Insert all CSS styles inline to the footer"
-msgstr ""
+msgstr "Încarcă toate stilurile CSS inline în footer"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:230
 msgid "Installed Version:"
-msgstr ""
+msgstr "Versiunea instalată:"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:46
 msgid "Lazy load images to improve page load times"
-msgstr ""
+msgstr "Întârzie încărcarea imaginilor"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:164
 msgid "Load CSS asynchronously"
-msgstr ""
+msgstr "Încărcare CSS în mod asincron"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:31
 msgid "Load JS from Google Libraries"
-msgstr ""
+msgstr "Încarcă JS din Google Libraries"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:21
 msgid "Main plugin options"
-msgstr ""
+msgstr "Opţiunile principale"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:172
 msgid "Minify all CSS styles"
-msgstr ""
+msgstr "Comprimă toate fişierele CSS"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:26
 msgid "Move scripts to the footer"
-msgstr ""
+msgstr "Muta script-uri in footer"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:153
@@ -109,81 +116,87 @@ msgid ""
 "compression means more performance. We recommend you choose a compression "
 "level between 50 and 75."
 msgstr ""
+"Reţine că după alegerea nivelului de compresie, modificările vor afecta "
+"numai imaginile noi încărcate pe site. Dacă doreşti să actualizezi toate "
+"imaginile la noul nivel de compresie, instalează şi rulează plugin-ul "
+"Regenerate Thumbnails. Că referinţă, un nivel mai scăzut de comprimare "
+"înseamnă mai multă performanţă a site-ului. Îţi recomandăm să alegi un nivel "
+"de compresie cu valorea cuprinsă între 50 şi 75."
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:109
 msgid "Number of executed queries:"
-msgstr ""
+msgstr "Numărul de interogări(queries) executate:"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:97
 msgid "Page loading time in seconds:"
-msgstr ""
+msgstr "Timpul de încărcare a paginii în secunde:"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:122
 msgid "Peak Memory Used:"
-msgstr ""
+msgstr "Memoria folosită"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:213
 msgid "Read online plugin documentation"
-msgstr ""
+msgstr "Citeşte online documentaţia pluginului"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:237
 msgid "Released date:"
-msgstr ""
+msgstr "Data lansării:"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:72
 msgid "Remove Adjacent Posts Links"
-msgstr ""
+msgstr "Elimină Adjacent Posts Links"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:62
 msgid "Remove RSD Link"
-msgstr ""
+msgstr "Elimină linkul RSD"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:77
 msgid "Remove Windows Live Writer Manifest"
-msgstr ""
+msgstr "Elimină Windows Live Writer Manifest"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:67
 msgid "Remove WordPress Shortlink"
-msgstr ""
+msgstr "Elimină WordPress Shortlink"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:87
 msgid "Remove all rss feed links from WP Head"
-msgstr ""
+msgstr "Elimină toate link-urile RSS feed"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:58
 msgid "Remove junk header tags"
-msgstr ""
+msgstr "Elimină tag-urile inutile din header"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:41
 msgid "Remove query strings from static resources"
-msgstr ""
+msgstr "Elimină versiunea din resursele statice"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:82
 msgid "Remove the WordPress Version Number"
-msgstr ""
+msgstr "Elimină numărul versiunii WordPress"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:51
 msgid "Removes extra Font Awesome stylesheets"
-msgstr ""
+msgstr "Elimină extra Font Awesome CSS"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:160
 msgid "Still need more speed?"
-msgstr ""
+msgstr "Încă ai nevoie de mai multă viteză?"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:152
@@ -192,23 +205,26 @@ msgid ""
 "images further than the default will make your file sizes even smaller and "
 "will boost your site performance."
 msgstr ""
+"Nivelul implicit de comprimare a imaginilor în WordPress este de 90%. "
+"Comprimarea imaginilor la un nivel mai mare decât nivelul implicit va "
+"micşora dimensiunile fişierelor şi va stimula performanta site-ului tău."
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:219
 msgid "Version Information"
-msgstr ""
+msgstr "Informaţii despre versiune"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:203
 msgid "What do these settings mean?"
-msgstr ""
+msgstr "Ce reprezintă toate aceste opţiuni?"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:117
 msgid "q"
-msgstr ""
+msgstr "q"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:105
 msgid "s"
-msgstr ""
+msgstr "s"

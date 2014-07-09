@@ -4,9 +4,9 @@
 /*	Author & copyright (c) 2008-2013 : Jason Penney (email : jpenney@jczorkmid.net ).  General Public License v.2.0 */
 
 
-if ( ! class_exists( 'JCP_UseGoogleLibraries' ) ) {
+if ( ! class_exists( 'SBP_GoogleLibraries' ) ) {
 
-	class JCP_UseGoogleLibraries {
+	class SBP_GoogleLibraries {
 
 		protected static $instance;
 		protected static $plugin_file = __FILE__;
@@ -15,7 +15,7 @@ if ( ! class_exists( 'JCP_UseGoogleLibraries' ) ) {
 
 		public static function get_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new JCP_UseGoogleLibraries();
+				self::$instance = new SBP_GoogleLibraries();
 			}
 			return self::$instance;
 		}
@@ -77,7 +77,7 @@ if ( ! class_exists( 'JCP_UseGoogleLibraries' ) ) {
 		 *
 		 * @var string
 		 */
-		protected static $cache_id = 'JCP_UseGoogleLibraries_cache';
+		protected static $cache_id = 'SBP_GoogleLibraries_cache';
 
 		/**
 		 * transient expiration
@@ -200,19 +200,19 @@ if ( ! class_exists( 'JCP_UseGoogleLibraries' ) ) {
 			add_action(
 				'wp_default_scripts',
 				array(
-					'JCP_UseGoogleLibraries',
+					'SBP_GoogleLibraries',
 					'replace_default_scripts_action',
 				),
 				1000
 			);
 			add_filter(
 				'script_loader_src',
-				array( 'JCP_UseGoogleLibraries', 'remove_ver_query_filter' ),
+				array( 'SBP_GoogleLibraries', 'remove_ver_query_filter' ),
 				1000
 			);
 			add_filter(
 				'init',
-				array( 'JCP_UseGoogleLibraries', 'setup_filter' )
+				array( 'SBP_GoogleLibraries', 'setup_filter' )
 			);
 
 			// There's a chance some plugin has called wp_enqueue_script

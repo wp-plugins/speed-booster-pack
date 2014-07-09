@@ -1,10 +1,10 @@
 ﻿=== Speed Booster Pack ===
 Contributors: tiguan
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EH65WAWPEYPXU
-Tags: speed, optimization, performance, speed booster, scripts to the footer, Google Libraries, CDN, defer parsing of javascript, remove query strings, lazy load, lazy load images, GTmetrix, Google PageSpeed, YSlow
+Tags: speed, optimization, performance, scripts to the footer, Google Libraries, Font Awesome CDN, defer parsing of javascript, remove query strings, lazy load images, GTmetrix, Google PageSpeed, YSlow, eliminate external render-blocking javascript and CSS, compression, async, render-blocking CSS
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 1.7
+Stable tag: 1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,13 +25,20 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 
 = Main Plugin Features =
 
-* **Moves scripts to the footer** to improve page loading speed.
+* **Eliminates external render-blocking javascript and css** in above-the-fold content to speed up your site.
+* **Moves scripts to the footer** to improve page loading speed and eliminate external render-blocking javascript.
+* **Load CSS asynchronously** to render your page more quickly and get a higher score on the major speed testing services.
+* **Minify and inline all CSS styles and move them to the footer** to eliminate external render-blocking CSS and optimize CSS delivery.
+* **Lazy loads images** to improve page load times and save bandwidth.
+* **Changes image compression level** to help your pages load faster and keep file sizes smaller.
 * **Loads javascript files from Google Libraries** rather than serving them from your WordPress install directly, to reduce latency, increase parallelism and improve caching.
 * **Defers parsing of javascript files** to reduce the initial load time of your page.
 * **Removes query strings from static resources** to improve your speed scores.
-* **Lazy load images** to improve page load times and save bandwidth.
 * **Removes extra Font Awesome stylesheets** added to your theme by certain plugins, if *Font Awesome* is already used in your theme.
 * **Removes junk header tags** to clean up your WordPress Header.
+* **Displays page loading time** in the plugin options page.
+* **Displays the number of executed queries** in the plugin options page.
+* **Displays the Peak Memory Used** in the plugin options page.
 
 = Page Load Stats =
 
@@ -52,9 +59,9 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 = Other Notes =
 
 * For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
-* Thanks to [Jason Penney](http://jasonpenney.net/) for Google Libraries feature.
-* Credits for Lazy Load feature belongs to: WordPress.com VIP team at Automattic, the TechCrunch 2011 Redesign team, and Jake Goldman (10up LLC).
-* Uses [jQuery.sonar](http://www.artzstudio.com/files/jquery-boston-2010/jquery.sonar/) by Dave Artz (AOL).
+* Translations included:
+* *Romanian ro_RO*
+* Translators are welcome!
 
 == Installation ==
 
@@ -65,20 +72,28 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 5. A new sub menu item `Speed Booster Pack` will appear in your main Settings menu.
 
 == Screenshots ==
-1. Plugin options page, simple view (v1.7)
+1. Plugin options page, simple view (v1.8)
 
 == Changelog ==
+
+= 1.8 =
+* Added option to load CSS asynchronously to render your page more quickly and get a higher score on the major speed testing services
+* Added option to inline and minify all CSS styles and move them to the header or to the footer, to eliminate external render-blocking CSS and optimize CSS delivery.
+* Added option to change the default image compression level, to help your pages load faster and keep file sizes smaller.
+* Added memory usage information and active plugins number in the plugin options page.
+* Replaced PHP version info with memory usage information (more useful).
+* Added Romanian translation and POT file. Translators are welcome!
 
 = 1.7 =
 * Fixed Lazy Load missed js.
 
 = 1.6 =
-* Fixed some errors and missed codes from plugin fuctions.
+* Fixed some errors and missed codes from plugin functions.
 
 = 1.5 =
 * Added Lazy Load feature to improve the web page loading times of your images.
 * Added an option to remove all rss feed links from WP Head.
-* Added plugin options informations to the footer, visible in page source, useful for debugging.
+* Added plugin options informations to the footer, visible in page source(hidden in front end), useful for debugging.
 
 = 1.4 =
 * Added a new option to remove extra Font Awesome stylesheets added to your theme by certain plugins, if Font Awesome is already used in your theme.
@@ -95,3 +110,10 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 
 = 1.0 =
 * Initial release
+
+== Credits ==
+
+* Thanks to [Jason Penney](http://jasonpenney.net/) for Google Libraries feature.
+* Credits for Lazy Load feature belongs to: WordPress.com VIP team at Automattic, the TechCrunch 2011 Redesign team, and Jake Goldman (10up LLC).
+* CSS option was implemented from Async JS and CSS plugin and updated to work with our plugin.
+* The plugin uses [jQuery.sonar](http://www.artzstudio.com/files/jquery-boston-2010/jquery.sonar/) by Dave Artz (AOL).

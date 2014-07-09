@@ -3,7 +3,7 @@
 * Plugin Name: Speed Booster Pack
 * Plugin URI: http://wordpress.org/plugins/speed-booster-pack/
 * Description: Speed Booster Pack allows you to improve your page loading speed and get a higher score on the major speed testing services such as <a href="http://gtmetrix.com/">GTmetrix</a>, <a href="http://developers.google.com/speed/pagespeed/insights/">Google PageSpeed</a> or other speed testing tools.
-* Version: 1.7
+* Version: 1.8
 * Author: Tiguan
 * Author URI: http://tiguandesign.com
 * License: GPLv2
@@ -38,9 +38,9 @@ $sbp_options = get_option( 'sbp_settings', 'checked' );	// retrieve the plugin s
 
 define( 'SPEED_BOOSTER_PACK_RELEASE_DATE', date_i18n( 'F j, Y', '1400569200' ) );	// Defining plugin release date
 define( 'SPEED_BOOSTER_PACK_PATH', plugin_dir_path( __FILE__ ) );					// Defining plugin dir path
-define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.7');										// Defining plugin version
+define( 'SPEED_BOOSTER_PACK_VERSION', 'v1.8');										// Defining plugin version
 define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining plugin name
-
+define( 'SBP_FOOTER', 9999999 );													// Defining css position
 
 /*----------------------------------------------------------------------------------------------------------
 	Main Plugin Class
@@ -50,12 +50,18 @@ define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining
 
 		class Speed_Booster_Pack {
 
-
 /*----------------------------------------------------------------------------------------------------------
 	Function Construct
 -----------------------------------------------------------------------------------------------------------*/
 
 	public function __construct() {
+
+
+		// Enqueue admin scripts
+		add_action( 'admin_enqueue_scripts', array( $this, 'sbp_admin_enqueue_scripts' ) );
+
+		// load plugin textdomain
+		add_action('init', array( $this, 'sbp_action_init' ) );
 
 		// Load plugin settings page
 		require_once( SPEED_BOOSTER_PACK_PATH . 'inc/settings.php' );
@@ -65,9 +71,6 @@ define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining
 		require_once( SPEED_BOOSTER_PACK_PATH . 'inc/core.php' );
 		$Speed_Booster_Pack_Core = new Speed_Booster_Pack_Core();
 
-		// load plugin textdomain
-		load_plugin_textdomain( 'sb-pack', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
-
 		// Enqueue admin style
 		add_action( 'admin_enqueue_scripts',  array( $this, 'sbp_enqueue_styles' ) );
 
@@ -75,7 +78,7 @@ define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining
 		add_action( 'wp_enqueue_scripts', array( $this, 'sbp_enqueue_scripts' ) );
 
 		// Render debugging information
-		add_action( 'wp_footer', array( $this, 'sbp_debugg' ), 999 );
+		add_action( 'wp_footer', array( $this, 'sbp_debugg' ), SBP_FOOTER+3 );
 
 		// Filters
 		$this->path = plugin_basename( __FILE__ );
@@ -85,32 +88,48 @@ define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining
 
 
 /*----------------------------------------------------------------------------------------------------------
+	Load plugin textdomain
+-----------------------------------------------------------------------------------------------------------*/
+
+		function sbp_action_init() {
+			load_plugin_textdomain( 'sb-pack', false, SPEED_BOOSTER_PACK_PATH . 'lang' );
+		}
+
+
+/*----------------------------------------------------------------------------------------------------------
 	Activate the plugin
 -----------------------------------------------------------------------------------------------------------*/
 
-	public static function activate() {
+	public static function sbp_activate() {
 
+		$sbp_options = get_option( 'sbp_settings', '' );
 		$timer_stop = timer_stop( 0, 2 );
 		$get_num_queries = get_num_queries();
 
-		if (get_option('sbp_page_time') == '') {
+		if ( get_option('sbp_page_time') == '' ) {
 			update_option( 'sbp_page_time', $timer_stop );
 		}
 
-		if (get_option('sbp_page_queries') == '') {
+		if ( get_option( 'sbp_page_queries') == '' ) {
 			update_option( 'sbp_page_queries', $get_num_queries );
 		}
 
-	} // END public static function activate
+		if ( get_option('sbp_css_async' ) === FALSE ) {
+			update_option( 'sbp_css_async', 1 );
+			update_option( 'sbp_css_minify', 1 );
+			update_option( 'sbp_footer_css', 0 );
+		}
+
+	} // END public static function sb_activate
 
 
 /*----------------------------------------------------------------------------------------------------------
 	Deactivate the plugin
 -----------------------------------------------------------------------------------------------------------*/
 
-	public static function deactivate() {
-			// Nothing to do yet
-		} // END public static function deactivate
+	public static function sbp_deactivate() {
+			delete_option( 'sbp_integer' );
+		}
 
 
 /*----------------------------------------------------------------------------------------------------------
@@ -123,28 +142,42 @@ define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining
 		global $sbp_settings_page;
 		if ( $hook != $sbp_settings_page )
 			return;
-		wp_enqueue_style( 'sbp-styles', plugin_dir_url( __FILE__ ) . 'css/sbp_style.min.css' );	//	change to style.dev.css to debug your plugin style
+		wp_enqueue_style( 'sbp-styles', plugin_dir_url( __FILE__ ) . 'css/sbp_style.min.css' );	//	change to style.dev.css to debug the plugin style
+		wp_enqueue_style( 'jquery-ui', plugin_dir_url( __FILE__ ) . 'css/jquery-ui.min.css' );
 
 		}	//	End function sbp_enqueue_styles
 
 
 /*----------------------------------------------------------------------------------------------------------
-	Enqueue Lazy Load scripts
+	Enqueue admin scripts
 -----------------------------------------------------------------------------------------------------------*/
 
-	static function sbp_enqueue_scripts() {
+function sbp_admin_enqueue_scripts() {
+	if ( is_admin() ) {
+		// Enqueue scripts for image compression slider
+		wp_enqueue_script( 'jquery-ui-slider' );
+		wp_enqueue_script( 'sbp-jquery-ui',  plugin_dir_url( __FILE__ ) . 'js/sbp-slider.js', array( 'jquery' ), SPEED_BOOSTER_PACK_VERSION, true );
+	}
+}
 
-		global $sbp_options;
+/*----------------------------------------------------------------------------------------------------------
+	Enqueue front end scripts
+-----------------------------------------------------------------------------------------------------------*/
 
-		if ( !is_admin() and isset( $sbp_options['lazy_load'] ) ) {
+static function sbp_enqueue_scripts() {
+
+	global $sbp_options;
+
+	if ( !is_admin() and isset( $sbp_options['lazy_load'] ) ) {
 
 			// We combined 'jquery.sonar.js' and 'lazy-load.js' (commented out below) in a single minified file to reduce the number of js files.
-			wp_enqueue_script( 'sbp-lazy-load-images',  plugin_dir_url( __FILE__ ) . 'js/sbp-lazy-load.min.js', array( 'jquery' ), SPEED_BOOSTER_PACK_VERSION, true );
+		wp_enqueue_script( 'sbp-lazy-load-images',  plugin_dir_url( __FILE__ ) . 'js/sbp-lazy-load.min.js', array( 'jquery' ), SPEED_BOOSTER_PACK_VERSION, true );
 
 			// wp_enqueue_script( 'sbp-lazy-load-images',  plugin_dir_url( __FILE__ ) . 'js/lazy-load.js', array( 'jquery', 'sbp-jquery-sonar' ), SPEED_BOOSTER_PACK_VERSION, true );
 			// wp_enqueue_script( 'sbp-jquery-sonar',  plugin_dir_url( __FILE__ ) . 'js/jquery.sonar.js', array( 'jquery' ), SPEED_BOOSTER_PACK_VERSION, true );
-		}
 	}
+
+}
 
 /*----------------------------------------------------------------------------------------------------------
 	Add settings link on plugins page
@@ -170,28 +203,21 @@ define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining
 			echo '<!-- We need this for debugging themes using ' . SPEED_BOOSTER_PACK_NAME . ' ' . SPEED_BOOSTER_PACK_VERSION . ' -->' . "\n";
 
 			if ( isset( $sbp_options['jquery_to_footer'] ) ) {
-				echo '<!-- Move scripts to the footer: active -->' . "\n";
-			}	//	End if
+				echo '<!-- Scripts to footer: enabled -->' . "\n";
+			}
 
-			if ( isset( $sbp_options['use_google_libs'] ) ) {
-				echo '<!-- Load JS from Google Libraries: active -->' . "\n";
-			}	//	End if
+			if ( isset( $sbp_options['sbp_footer_css'] ) ) {
+				echo '<!-- CSS to footer: enabled -->' . "\n";
+			}
 
 			if ( isset( $sbp_options['defer_parsing'] ) ) {
-				echo '<!-- Defer parsing of javascript files: active -->' . "\n";
-			}	//	End if
+				echo '<!-- Defer parsing of js: enabled -->' . "\n";
+			}
 
-			if ( isset( $sbp_options['query_strings'] ) ) {
-				echo '<!-- Remove query strings from static resources: active -->' . "\n";
-			}	//	End if
+			if ( isset( $sbp_options['sbp_css_async'] ) ) {
+				echo '<!-- CSS Async: enabled -->' . "\n";
+			}
 
-			if ( isset( $sbp_options['lazy_load'] ) ) {
-				echo '<!-- Lazy load images to improve page load times: active -->' . "\n";
-			}	//	End if
-
-			if ( isset( $sbp_options['font_awesome'] ) ) {
-				echo '<!-- Removes additional Font Awesome stylesheets: active -->' . "\n";
-			}	//	End if
 
 		}	//	End function sbp_debugg
 
@@ -202,8 +228,8 @@ define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining
 if( class_exists( 'Speed_Booster_Pack' ) ) {
 
 	// Installation and uninstallation hooks
-	register_activation_hook( __FILE__, array( 'Speed_Booster_Pack', 'activate' ) );
-	register_deactivation_hook( __FILE__, array( 'Speed_Booster_Pack', 'deactivate' ) );
+	register_activation_hook( __FILE__, array( 'Speed_Booster_Pack', 'sbp_activate' ) );
+	register_deactivation_hook( __FILE__, array( 'Speed_Booster_Pack', 'sbp_deactivate' ) );
 
 	// instantiate the plugin class
 	$speed_booster_pack = new Speed_Booster_Pack();
