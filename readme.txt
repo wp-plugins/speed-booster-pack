@@ -58,8 +58,8 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 
 = Other Notes =
 
-* For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
-* Translations included:
+For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
+Translations included:
 * *Romanian ro_RO*
 * Translators are welcome!
 
@@ -115,5 +115,5 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 
 * Thanks to [Jason Penney](http://jasonpenney.net/) for Google Libraries feature.
 * Credits for Lazy Load feature belongs to: WordPress.com VIP team at Automattic, the TechCrunch 2011 Redesign team, and Jake Goldman (10up LLC).
-* CSS option was implemented from Async JS and CSS plugin and updated to work with our plugin.
+* CSS option was implemented from Async JS and CSS plugin and updated to our plugin.
 * The plugin uses [jQuery.sonar](http://www.artzstudio.com/files/jquery-boston-2010/jquery.sonar/) by Dave Artz (AOL).
