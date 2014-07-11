@@ -22,7 +22,7 @@ class Speed_Booster_Pack_Lazy_Load {
 
 	static function add_sbp_image_placeholders( $content ) {
 		// Don't lazyload for feeds, previews, mobile
-		if( is_feed() || is_preview() || ( function_exists( 'is_mobile' ) && is_mobile() ) )
+		if( is_feed() || is_preview() || ( function_exists( 'wp_is_mobile' ) && wp_is_mobile() ) )
 			return $content;
 
 		// Don't lazy-load if the content has already been run through previously

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: speed, optimization, performance, scripts to the footer, google libraries, font awesome cdn, defer parsing of javascript, remove query strings, lazy load images, gtmetrix, google pageSpeed, yslow, eliminate external render-blocking javascript and css, compression, async, render-blocking css
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.1
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,11 +59,16 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 
 == Changelog ==
 
+= 2.2 =
+* Fixed option to disable all CSS Async features on mobile devices.
+* Fixed incompatibility with WPtouch plugin. Thanks [@DevilIce](http://profiles.wordpress.org/devilice) for the [bug report](wordpress.org/support/topic/css-asynchronously-and-wptouch-issue).
+* Update function wp_is_mobile() on lazy load images to really disabled this feature on mobile devices.
+
 = 2.1 =
-Added an option to disable all CSS Async features on mobile devices, to avoid some appearance issues until finding a clean solution to fix it.
+*Added an option to disable all CSS Async features on mobile devices, to avoid some appearance issues until finding a clean solution to fix it.
 
 = 2.0 =
-Modified: amended previous except for the admin toolbar css to enqueue its stylesheets only if admin bar is showing, to not break the render blocking plugin option.
+*Modified: amended previous except for the admin toolbar css to enqueue its stylesheets only if admin bar is showing, to not break the render blocking plugin option.
 
 = 1.9 =
 * Fix: breaking the SEO by Yoast plugin interface (perhaps as well as to others too). Thanks [@JahLive](http://profiles.wordpress.org/jahlive) for the [bug report](http://wordpress.org/support/topic/yoast-wordpress-seo-broken-after-update).
