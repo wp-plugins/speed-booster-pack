@@ -105,6 +105,22 @@ Modified: amended previous except for the admin toolbar css to enqueue its style
 = 1.0 =
 * Initial release
 
+== Page Load Stats ==
+
+Page Load Stats is a brief statistic displayed in the plugin options page. It displays your homepage loading speed (in seconds) and number of processed queries.
+
+**Page loading time** – the progress bar color will be:
+
+* *green* if the page load takes less than a second
+* *orange* when loading the page takes between 1 and 2 seconds
+* *red* if the page loading takes longer than 2 seconds
+
+**Number of executed queries** – the progress bar color will be:
+
+* *green* if there were less than 100 queries
+* *orange* if there were between 100 and 200 queries
+* *red* if the page required more than 200 queries
+
 == Credits ==
 
 * Thanks to [Jason Penney](http://jasonpenney.net/) for Google Libraries feature.
