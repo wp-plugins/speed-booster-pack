@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: speed, optimization, performance, scripts to the footer, google libraries, font awesome cdn, defer parsing of javascript, remove query strings, lazy load images, gtmetrix, google pageSpeed, yslow, eliminate external render-blocking javascript and css, compression, async, render-blocking css
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.0
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,22 +40,6 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 * **Displays the number of executed queries** in the plugin options page.
 * **Displays the Peak Memory Used** in the plugin options page.
 
-= Page Load Stats =
-
-Page Load Stats is a brief statistic displayed in the plugin options page. It displays your homepage loading speed (in seconds) and number of processed queries.
-
-**Page loading time** – the progress bar color will be:
-
-* *green* if the page load takes less than a second
-* *orange* when loading the page takes between 1 and 2 seconds
-* *red* if the page loading takes longer than 2 seconds
-
-**Number of executed queries** – the progress bar color will be:
-
-* *green* if there were less than 100 queries
-* *orange* if there were between 100 and 200 queries
-* *red* if the page required more than 200 queries
-
 = Other Notes =
 
 * For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
@@ -71,9 +55,12 @@ Page Load Stats is a brief statistic displayed in the plugin options page. It di
 5. A new sub menu item `Speed Booster Pack` will appear in your main Settings menu.
 
 == Screenshots ==
-1. Plugin options page, simple view (v1.8)
+1. Plugin options page, simple view (v2.1)
 
 == Changelog ==
+
+= 2.1 =
+Added an option to disable all CSS Async features on mobile devices, to avoid some appearance issues until finding a clean solution to fix it.
 
 = 2.0 =
 Modified: amended previous except for the admin toolbar css to enqueue its stylesheets only if admin bar is showing, to not break the render blocking plugin option.
@@ -117,6 +104,22 @@ Modified: amended previous except for the admin toolbar css to enqueue its style
 
 = 1.0 =
 * Initial release
+
+= Page Load Stats =
+
+Page Load Stats is a brief statistic displayed in the plugin options page. It displays your homepage loading speed (in seconds) and number of processed queries.
+
+**Page loading time** – the progress bar color will be:
+
+* *green* if the page load takes less than a second
+* *orange* when loading the page takes between 1 and 2 seconds
+* *red* if the page loading takes longer than 2 seconds
+
+**Number of executed queries** – the progress bar color will be:
+
+* *green* if there were less than 100 queries
+* *orange* if there were between 100 and 200 queries
+* *red* if the page required more than 200 queries
 
 == Credits ==
 

@@ -80,7 +80,7 @@ function sbp_init() {
 
 	global $sbp_options;
 
-	if ( isset( $sbp_options['sbp_css_async'] ) ) {
+	if ( isset( $sbp_options['sbp_css_async'] ) and !isset ( $sbp_options['sbp_is_mobile'] ) and !wp_is_mobile() ) {
 		add_action( 'wp_print_styles', array( $this, 'sbp_print_styles' ), SBP_FOOTER );
 		add_action( 'wp_footer', array( $this, 'sbp_print_delayed_styles' ), SBP_FOOTER+1 );
 	}

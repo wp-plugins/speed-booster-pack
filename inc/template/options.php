@@ -194,6 +194,12 @@ var jpegCompression = '<?php echo $this->image_compression; ?>';
 <label for="sbp_settings[sbp_footer_css]"><?php _e( 'Insert all CSS styles inline to the footer', 'sb-pack' ); ?></label>
 </p>
 
+<p>
+<input id="sbp_settings[sbp_is_mobile]" name="sbp_settings[sbp_is_mobile]" type="checkbox" value="1" <?php checked( 1, isset( $sbp_options['sbp_is_mobile'] ) ); ?> />
+<label for="sbp_settings[sbp_is_mobile]"><?php _e( 'Disable all above CSS options on mobile devices', 'sb-pack' ); ?></label>
+</p>
+
+
 <p class ="description"><?php _e( '*Inserting all CSS styles inline to the footer will eliminate render-blocking CSS warning in Google Page Speed test. If there is something broken after activation, you need to disable this option. Please note that before enabling this sensitive option, it is strongly recommended that you also enable the "Move scripts to the footer" option.', 'sb-pack' ); ?>
 </p>
 
