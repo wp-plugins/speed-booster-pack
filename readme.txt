@@ -61,7 +61,7 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 
 = 2.2 =
 * Fixed option to disable all CSS Async features on mobile devices.
-* Fixed incompatibility with WPtouch plugin. Thanks [@DevilIce](http://profiles.wordpress.org/devilice) for the [bug report](wordpress.org/support/topic/css-asynchronously-and-wptouch-issue).
+* Fixed incompatibility with WPtouch plugin. Thanks to [@DevilIce](http://profiles.wordpress.org/devilice) for the [bug report](http://wordpress.org/support/topic/css-asynchronously-and-wptouch-issue).
 * Update function wp_is_mobile() on lazy load images to really disabled this feature on mobile devices.
 
 = 2.1 =
@@ -71,7 +71,7 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 *Modified: amended previous except for the admin toolbar css to enqueue its stylesheets only if admin bar is showing, to not break the render blocking plugin option.
 
 = 1.9 =
-* Fix: breaking the SEO by Yoast plugin interface (perhaps as well as to others too). Thanks [@JahLive](http://profiles.wordpress.org/jahlive) for the [bug report](http://wordpress.org/support/topic/yoast-wordpress-seo-broken-after-update).
+* Fix: breaking the SEO by Yoast plugin interface (perhaps as well as to others too). Thanks to [@JahLive](http://profiles.wordpress.org/jahlive) for the [bug report](http://wordpress.org/support/topic/yoast-wordpress-seo-broken-after-update).
 * Added an except for the admin toolbar css since the Load CSS asynchronously option removes its dashicons and stylesheets.
 
 
