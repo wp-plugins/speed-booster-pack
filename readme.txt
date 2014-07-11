@@ -105,7 +105,7 @@ Modified: amended previous except for the admin toolbar css to enqueue its style
 = 1.0 =
 * Initial release
 
-= Page Load Stats =
+== Page Load Stats ==
 
 Page Load Stats is a brief statistic displayed in the plugin options page. It displays your homepage loading speed (in seconds) and number of processed queries.
 
