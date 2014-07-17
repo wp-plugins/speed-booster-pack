@@ -27,7 +27,7 @@ The following video is not about "how to get a score of 100 in Google Page Speed
 
 https://www.youtube.com/watch?v=u0G6pk2mX4M
 
-You can test yourself the speed of the [demo site](http://tiguandesign.com/testing-speed-booster).
+[This](http://tiguandesign.com/testing-speed-booster) is the website used in the video. You can test its speed [here](https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Ftiguandesign.com%2Ftesting-speed-booster%2F&tab=desktop)
 
 = Main Plugin Features =
 
