@@ -22,6 +22,7 @@ if( !class_exists( 'Speed_Booster_Pack_Options' ) ) {
 
         register_setting( 'speed_booster_settings_group', 'sbp_settings' );
         register_setting( 'speed_booster_settings_group', 'sbp_integer' );
+        register_setting( 'speed_booster_settings_group', 'sbp_css_exceptions' );
 
         }  //  END public function admin_init
 
@@ -53,10 +54,18 @@ if( !class_exists( 'Speed_Booster_Pack_Options' ) ) {
         $page_queries = get_option( 'sbp_page_queries' );
         $response = wp_remote_get( $url, array()  );
 
+        // fallback for image compression integer
         if ( get_option( 'sbp_integer' ) ) {
             $this->image_compression = get_option( 'sbp_integer' );
         } else {
             $this->image_compression = 90;
+        }
+
+        // fallback for stylesheets exception handle
+        if ( get_option( 'sbp_css_exceptions' ) ) {
+            $css_exceptions = get_option( 'sbp_css_exceptions' );
+        } else {
+            $css_exceptions = '' ;
         }
 
          // Render the plugin options page HTML

@@ -9,30 +9,25 @@ msgstr ""
 "Last-Translator: Liviu Costache <tiguan@tiguandesign.com>\n"
 "Language-Team: Tiguandesign.com <tiguan@tiguandesign.com>\n"
 "MIME-Version: 1.0\n"
+"Language: en\n"
 "X-Generator: Poedit 1.6.6\n"
 "X-Poedit-KeywordsList: _e;__\n"
 "X-Poedit-Basepath: .\n"
-"Language: en\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:213
+#: speed-booster-pack/inc/template/options.php:249
 msgid " with guidelines to enhance your website performance."
-msgstr ""
-
-#. Text in echo
-#: speed-booster-pack/inc/template/options.php:182
-msgid ""
-"*Inserting all CSS styles inline to the footer will eliminate render-"
-"blocking CSS warning in Google Page Speed test. If there is something broken "
-"after activation, you need to disable this option. Please note that before "
-"enabling this sensitive option, it is strongly recommended that you also "
-"enable the \"Move scripts to the footer\" option."
 msgstr ""
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:123
 msgid "Active Plugins:"
+msgstr ""
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:216
+msgid "Additional information:"
 msgstr ""
 
 #. Text in echo
@@ -46,7 +41,7 @@ msgid "Change the default image compression level"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:143
+#: speed-booster-pack/inc/template/options.php:158
 msgid "Compression level:"
 msgstr ""
 
@@ -56,17 +51,49 @@ msgid "Defer parsing of javascript files"
 msgstr ""
 
 #. Text in echo
+#: speed-booster-pack/inc/template/options.php:199
+msgid "Disable all above CSS options on mobile devices"
+msgstr ""
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:204
+msgid "Eliminate flash of unstyled content (FOUC)"
+msgstr ""
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:218
+msgid "Eliminate flash of unstyled content (FOUC): "
+msgstr ""
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:212
+msgid ""
+"Enter one by line, the handles or css files or the final part of the style "
+"URL. For example: font-awesome or font-awesome.min.css"
+msgstr ""
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:209
+msgid "Exclude styles from asynchronously option: "
+msgstr ""
+
+#. Text in echo
 #: speed-booster-pack/inc/template/options.php:95
 msgid "Home Page Load Stats"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:179
+#: speed-booster-pack/inc/template/options.php:194
 msgid "Insert all CSS styles inline to the footer"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:230
+#: speed-booster-pack/inc/template/options.php:217
+msgid "Insert all CSS styles inline to the footer: "
+msgstr ""
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:266
 msgid "Installed Version:"
 msgstr ""
 
@@ -76,7 +103,7 @@ msgid "Lazy load images to improve page load times"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:164
+#: speed-booster-pack/inc/template/options.php:179
 msgid "Load CSS asynchronously"
 msgstr ""
 
@@ -91,7 +118,7 @@ msgid "Main plugin options"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:172
+#: speed-booster-pack/inc/template/options.php:187
 msgid "Minify all CSS styles"
 msgstr ""
 
@@ -101,7 +128,7 @@ msgid "Move scripts to the footer"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:153
+#: speed-booster-pack/inc/template/options.php:168
 msgid ""
 "Note that any changes you make will only affect new images uploaded to your "
 "site. If you want to update all of your images with the new sizes, install "
@@ -126,12 +153,12 @@ msgid "Peak Memory Used:"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:213
+#: speed-booster-pack/inc/template/options.php:249
 msgid "Read online plugin documentation"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:237
+#: speed-booster-pack/inc/template/options.php:273
 msgid "Released date:"
 msgstr ""
 
@@ -181,12 +208,12 @@ msgid "Removes extra Font Awesome stylesheets"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:160
+#: speed-booster-pack/inc/template/options.php:175
 msgid "Still need more speed?"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:152
+#: speed-booster-pack/inc/template/options.php:167
 msgid ""
 "The default image compression setting in WordPress is 90%. Compressing your "
 "images further than the default will make your file sizes even smaller and "
@@ -194,13 +221,24 @@ msgid ""
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:219
+#: speed-booster-pack/inc/template/options.php:255
 msgid "Version Information"
 msgstr ""
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:203
+#: speed-booster-pack/inc/template/options.php:239
 msgid "What do these settings mean?"
+msgstr ""
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:218
+msgid ""
+"inserting all CSS styles inline to the footer could create some type of "
+"flash of unstyled content(FOUC), i.e. first it shows your site content as "
+"though it has not styles then the styled content appear after a very short "
+"time (half of second or so). Enabling this option could eliminate this "
+"unwanted effect. Please note that this is a beta option so if there is "
+"something broken after activation, you need to disable this option."
 msgstr ""
 
 #. Text in echo
@@ -211,4 +249,14 @@ msgstr ""
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:105
 msgid "s"
+msgstr ""
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:217
+msgid ""
+"this option will eliminate render-blocking CSS warning in Google Page Speed "
+"test. If there is something broken after activation, you need to disable "
+"this option. Please note that before enabling this sensitive option, it is "
+"strongly recommended that you also enable the \"Move scripts to the footer\" "
+"option."
 msgstr ""

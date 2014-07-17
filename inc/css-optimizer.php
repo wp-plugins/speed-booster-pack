@@ -11,14 +11,16 @@ function sbp_generate_styles_list() {
 	$list = array();
 	if ( isset( $wp_styles->queue ) && is_array( $wp_styles->queue ) ) {
 		foreach ( $wp_styles->queue as $style ) {
-
+			if ( is_css_excluded( $style ) ) {
+				//  load excluded stylesheet in render-blocking manner
+			} else {
 				$list[] = array(
 					'src'	=> $wp_styles->registered[$style]->src,
 					'media'	=> $wp_styles->registered[$style]->args
-				);
+					);
+			}
 		}
 	}
-
 	return $list;
 
 }	//	END function sbp_generate_styles_list
@@ -35,6 +37,10 @@ function sbp_unregister_styles() {
 	if ( isset( $wp_styles->queue ) && is_array( $wp_styles->queue ) ) {
 
 		foreach ( $wp_styles->queue as $style ){
+			if ( is_css_excluded( $style )) {
+				continue;
+			}
+
 			wp_dequeue_style( $style );
 			wp_deregister_style( $style );
 		}
@@ -154,4 +160,45 @@ function sbp_remove_multiline_comments( $code,$method=0 ) {
 	}
 
 	return $code;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------
+    CSS OPTIMIZER - get stylesheets exception list
+---------------------------------------------------------------------------------------------------------*/
+
+function sbp_style_exceptions() {
+
+	$array = explode("\n",get_option( 'sbp_css_exceptions' ));
+	$css_exceptions = array();
+	foreach ($array as $key=>$ex) {
+		if (trim($ex)!=''){
+			$css_exceptions[$key] = trim($ex);
+		}
+	}
+
+	return $css_exceptions;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------
+    CSS OPTIMIZER - get stylesheets exception names
+---------------------------------------------------------------------------------------------------------*/
+
+function is_css_excluded( $file ) {
+	global $wp_styles;
+	$css_exceptions = sbp_style_exceptions();
+
+if( is_string( $file ) && isset( $wp_styles->registered[$file] ) ) {
+		$filename = $file;
+		$file = $wp_styles->registered[$file];
+	}
+
+	foreach ( $css_exceptions as $ex ){
+		if ( $file->handle==$ex || (strpos($ex,'.')!==FALSE && strpos($file->src,$ex)!==FALSE) ){
+			return true;
+		}
+	}
+
+	return false;
 }

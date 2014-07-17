@@ -2,45 +2,33 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
-"2:1));\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Speed Booster Pack\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Liviu Costache <tiguan@tiguandesign.com>\n"
 "Language-Team: Tiguandesign.com <tiguan@tiguandesign.com>\n"
 "MIME-Version: 1.0\n"
+"Language: en\n"
 "X-Generator: Poedit 1.6.6\n"
 "X-Poedit-KeywordsList: _e;__\n"
 "X-Poedit-Basepath: .\n"
-"Language: ro\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:213
+#: speed-booster-pack/inc/template/options.php:249
 msgid " with guidelines to enhance your website performance."
 msgstr "care conţine îndrumari pentru a îmbunătăți performanța site-ul tău."
-
-#. Text in echo
-#: speed-booster-pack/inc/template/options.php:182
-msgid ""
-"*Inserting all CSS styles inline to the footer will eliminate render-"
-"blocking CSS warning in Google Page Speed test. If there is something broken "
-"after activation, you need to disable this option. Please note that before "
-"enabling this sensitive option, it is strongly recommended that you also "
-"enable the \"Move scripts to the footer\" option."
-msgstr ""
-"*Încărcând toate stilurile CSS inline în partea de jos a site-ului va "
-"elimina avertizarea din testul Google Page Speed despre JavaScript şi CSS "
-"care blochează redarea conţinutului. Dacă designul site-ului este afectat "
-"sau ceva nu funcţionează după activare, va trebui să dezactivezi această "
-"opţiune. Te rugăm să reţii că înainte de a activă această opţiune sensibilă, "
-"este obligatoriu să ai activată si opţiunea \"Mutaţi script-uri în footer\"."
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:123
 msgid "Active Plugins:"
 msgstr "Pluginuri Active:"
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:216
+msgid "Additional information:"
+msgstr "Informaţii suplimentare:"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:15
@@ -53,7 +41,7 @@ msgid "Change the default image compression level"
 msgstr "Schimbă nivelul de compresie al imaginilor"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:143
+#: speed-booster-pack/inc/template/options.php:158
 msgid "Compression level:"
 msgstr "Nivelul de compresie:"
 
@@ -63,17 +51,52 @@ msgid "Defer parsing of javascript files"
 msgstr "Amână analizarea fişierelor javascript"
 
 #. Text in echo
+#: speed-booster-pack/inc/template/options.php:199
+msgid "Disable all above CSS options on mobile devices"
+msgstr ""
+"Dezactivează toate opţiunile CSS de mai sus pentru dispozitivele mobile"
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:204
+msgid "Eliminate flash of unstyled content (FOUC)"
+msgstr "Elimina efectul de conţinut fără stil (FOUC)"
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:218
+msgid "Eliminate flash of unstyled content (FOUC): "
+msgstr "Elimina efectul de conţinut fără stil (FOUC):"
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:212
+msgid ""
+"Enter one by line, the handles or css files or the final part of the style "
+"URL. For example: font-awesome or font-awesome.min.css"
+msgstr ""
+"Introdu câte una pe linie, denumirile fişierelor CSS sau partea finală a URL-"
+"ului acestora. De exemplu: font-awesome sau font-awesome.min.css"
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:209
+msgid "Exclude styles from asynchronously option: "
+msgstr "Exclude stiluri CSS de la opţiunea asincron"
+
+#. Text in echo
 #: speed-booster-pack/inc/template/options.php:95
 msgid "Home Page Load Stats"
 msgstr "Încărcarea paginii de bază"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:179
+#: speed-booster-pack/inc/template/options.php:194
 msgid "Insert all CSS styles inline to the footer"
-msgstr "Încarcă toate stilurile CSS inline în footer"
+msgstr "Mută toate stilurile CSS în linie în footer"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:230
+#: speed-booster-pack/inc/template/options.php:217
+msgid "Insert all CSS styles inline to the footer: "
+msgstr "Mută toate stilurile CSS în linie în footer:"
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:266
 msgid "Installed Version:"
 msgstr "Versiunea instalată:"
 
@@ -83,7 +106,7 @@ msgid "Lazy load images to improve page load times"
 msgstr "Întârzie încărcarea imaginilor"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:164
+#: speed-booster-pack/inc/template/options.php:179
 msgid "Load CSS asynchronously"
 msgstr "Încărcare CSS în mod asincron"
 
@@ -98,7 +121,7 @@ msgid "Main plugin options"
 msgstr "Opţiunile principale"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:172
+#: speed-booster-pack/inc/template/options.php:187
 msgid "Minify all CSS styles"
 msgstr "Comprimă toate fişierele CSS"
 
@@ -108,7 +131,7 @@ msgid "Move scripts to the footer"
 msgstr "Muta script-uri in footer"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:153
+#: speed-booster-pack/inc/template/options.php:168
 msgid ""
 "Note that any changes you make will only affect new images uploaded to your "
 "site. If you want to update all of your images with the new sizes, install "
@@ -126,7 +149,7 @@ msgstr ""
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:109
 msgid "Number of executed queries:"
-msgstr "Numărul de interogări(queries) executate:"
+msgstr "Numărul de interogări (queries) executate:"
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:97
@@ -139,12 +162,12 @@ msgid "Peak Memory Used:"
 msgstr "Memoria folosită"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:213
+#: speed-booster-pack/inc/template/options.php:249
 msgid "Read online plugin documentation"
 msgstr "Citeşte online documentaţia pluginului"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:237
+#: speed-booster-pack/inc/template/options.php:273
 msgid "Released date:"
 msgstr "Data lansării:"
 
@@ -194,12 +217,12 @@ msgid "Removes extra Font Awesome stylesheets"
 msgstr "Elimină extra Font Awesome CSS"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:160
+#: speed-booster-pack/inc/template/options.php:175
 msgid "Still need more speed?"
 msgstr "Încă ai nevoie de mai multă viteză?"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:152
+#: speed-booster-pack/inc/template/options.php:167
 msgid ""
 "The default image compression setting in WordPress is 90%. Compressing your "
 "images further than the default will make your file sizes even smaller and "
@@ -210,14 +233,32 @@ msgstr ""
 "micşora dimensiunile fişierelor şi va stimula performanta site-ului tău."
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:219
+#: speed-booster-pack/inc/template/options.php:255
 msgid "Version Information"
 msgstr "Informaţii despre versiune"
 
 #. Text in echo
-#: speed-booster-pack/inc/template/options.php:203
+#: speed-booster-pack/inc/template/options.php:239
 msgid "What do these settings mean?"
 msgstr "Ce reprezintă toate aceste opţiuni?"
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:218
+msgid ""
+"inserting all CSS styles inline to the footer could create some type of "
+"flash of unstyled content(FOUC), i.e. first it shows your site content as "
+"though it has not styles then the styled content appear after a very short "
+"time (half of second or so). Enabling this option could eliminate this "
+"unwanted effect. Please note that this is a beta option so if there is "
+"something broken after activation, you need to disable this option."
+msgstr ""
+"mutând toate stilurile CSS în footer ar putea crea un efect nedorit denumit "
+"FOUC. De exemplu, la încărcarea site-ului în primele milisecunde, site-ul va "
+"arăta ca şi cum nu conţine stiluri, conţinutul cu stil apărând după un "
+"foarte scurt timp.. Activând această opţiune ar putea elimina acest efect "
+"nedorit. Te rog să notezi că această opţiune este experimentală aşa că dacă "
+"observi că ceva nu merge după activare, va trebui să dezactivezi această "
+"opţiune."
 
 #. Text in echo
 #: speed-booster-pack/inc/template/options.php:117
@@ -228,3 +269,18 @@ msgstr "q"
 #: speed-booster-pack/inc/template/options.php:105
 msgid "s"
 msgstr "s"
+
+#. Text in echo
+#: speed-booster-pack/inc/template/options.php:217
+msgid ""
+"this option will eliminate render-blocking CSS warning in Google Page Speed "
+"test. If there is something broken after activation, you need to disable "
+"this option. Please note that before enabling this sensitive option, it is "
+"strongly recommended that you also enable the \"Move scripts to the footer\" "
+"option."
+msgstr ""
+"această opţiune va elimina mesajul render-blocking CSS din Google Page "
+"Speed. Dacă observi că ceva nu merge după activare, va trebui să dezactivezi "
+"această opţiune. Te rog să notezi că înainte de activarea acestei opţiuni "
+"sensibile, este neapărat necesar că şi opţiunea de mutare a scripturilor în "
+"footer trebuie să fie activă."

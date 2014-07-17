@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: speed, optimization, performance, scripts to the footer, google libraries, font awesome cdn, defer parsing of javascript, remove query strings, lazy load images, gtmetrix, google pageSpeed, yslow, eliminate external render-blocking javascript and css, compression, async, render-blocking css
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,10 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 * 47% of online consumers expect a web page to load in 2 seconds or less
 * 40% of people will abandon a site that takes more than 3 seconds to load
 * 80% of online consumers are less likely to return to a slow website
+
+The following video is not about "how to get a score of 100 in Google Page Speed" but want to show the difference in points Before and After activating Speed ​​Booster Pack plugin:
+
+https://www.youtube.com/watch?v=u0G6pk2mX4M
 
 = Main Plugin Features =
 
@@ -55,14 +59,20 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 5. A new sub menu item `Speed Booster Pack` will appear in your main Settings menu.
 
 == Screenshots ==
-1. Plugin options page, simple view (v2.1)
+1. Plugin options page, simple view (v2.3)
 
 == Changelog ==
 
-= 2.2 =
+= 2.3 =
+* Added option to exclude certain CSS files from being loaded asynchronously.
+* Changed the position of the styles when they are inlined to the footer (before js files).
+* Added an experimental option to eliminate flash of unstyled content (FOUC) when all CSS styles are inlined to the footer.
+* Translations updated.
+
+ 2.2 =
 * Fixed option to disable all CSS Async features on mobile devices.
 * Fixed incompatibility with WPtouch plugin. Thanks to [@DevilIce](http://profiles.wordpress.org/devilice) for the [bug report](http://wordpress.org/support/topic/css-asynchronously-and-wptouch-issue).
-* Update function wp_is_mobile() on lazy load images to really disabled this feature on mobile devices.
+* Updated function wp_is_mobile() on lazy load images to really disabled this feature on mobile devices.
 
 = 2.1 =
 *Added an option to disable all CSS Async features on mobile devices, to avoid some appearance issues until finding a clean solution to fix it.

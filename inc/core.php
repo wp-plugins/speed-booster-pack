@@ -11,7 +11,8 @@ if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
 		public function __construct() {
 
 			global $sbp_options;
-
+			add_action( 'wp_head', array( $this, 'sbp_prevent_fouc_start' ) );
+			add_action( 'wp_footer', array( $this, 'sbp_prevent_fouc_end' ), SBP_FOOTER_LAST );
             add_action( 'wp_enqueue_scripts',  array( $this, 'sbp_no_more_fontawesome'), 9999 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'sbp_move_scripts_to_footer' ) );
 			add_action( 'wp_footer', array( $this, 'sbp_show_page_load_stats' ), 999 );
@@ -73,6 +74,35 @@ if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
 
 
 /*--------------------------------------------------------------------------------------------------------
+    Prevent Flash of Unstyled Content (FOUC) - BETA
+---------------------------------------------------------------------------------------------------------*/
+
+function sbp_prevent_fouc_start() {
+	global $sbp_options;
+	if ( isset( $sbp_options['sbp_css_async'] ) and isset( $sbp_options['sbp_footer_css'] ) and isset ( $sbp_options['sbp_prevent_fouc'] ) ) {
+		echo '<style>.no-js{display:none;}</style>';
+	}
+}
+
+
+function sbp_prevent_fouc_end() {
+	global $sbp_options;
+	if ( isset( $sbp_options['sbp_css_async'] ) and isset( $sbp_options['sbp_footer_css'] ) and isset ( $sbp_options['sbp_prevent_fouc'] ) ) {
+		echo "<script>
+(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
+</script>
+<script type=\"text/javascript\" >
+$(document).ready(function() {
+loadeddocument();
+});
+</script>
+" ;
+	}
+}
+
+
+
+/*--------------------------------------------------------------------------------------------------------
     Init the CSS Optimizer actions
 ---------------------------------------------------------------------------------------------------------*/
 
@@ -84,7 +114,7 @@ function sbp_init() {
 		return;
 	}
 
-	if ( isset( $sbp_options['sbp_css_async'] ) ) {
+	if ( !is_admin() and isset( $sbp_options['sbp_css_async'] ) ) {
 		add_action( 'wp_print_styles', array( $this, 'sbp_print_styles' ), SBP_FOOTER );
 		add_action( 'wp_footer', array( $this, 'sbp_print_delayed_styles' ), SBP_FOOTER+1 );
 	}
@@ -159,7 +189,7 @@ if ( !isset( $sbp_options['sbp_footer_css'] ) ) {
         }
         if ( !empty( $not_inlined) ) {
             foreach ( $not_inlined as $style ){
-                ?><link rel="stylesheet"  href="<?php echo $style['src']?>" type="text/css" <?php echo $style['media'] ? "media=\"{$style['media']}\"" : ''?> /><?php
+                ?><link rel="stylesheet" href="<?php echo $style['src']?>" type="text/css" <?php echo $style['media'] ? "media=\"{$style['media']}\"" : ''?> /><?php
             }
         }
     }
@@ -195,7 +225,7 @@ if ( isset( $sbp_options['sbp_footer_css'] ) ) {
             }
             if ( !empty( $not_inlined ) ) {
                 foreach ( $not_inlined as $style ) {
-                    ?><link rel="stylesheet"  href="<?php echo $style['src']?>" type="text/css" <?php echo $style['media'] ? "media=\"{$style['media']}\"" : ''?> /><?php
+                    ?><link rel="stylesheet" href="<?php echo $style['src']?>" type="text/css" <?php echo $style['media'] ? "media=\"{$style['media']}\"" : ''?> /><?php
                 }
             }
         }

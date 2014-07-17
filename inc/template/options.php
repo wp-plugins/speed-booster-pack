@@ -199,9 +199,24 @@ var jpegCompression = '<?php echo $this->image_compression; ?>';
 <label for="sbp_settings[sbp_is_mobile]"><?php _e( 'Disable all above CSS options on mobile devices', 'sb-pack' ); ?></label>
 </p>
 
-
-<p class ="description"><?php _e( '*Inserting all CSS styles inline to the footer will eliminate render-blocking CSS warning in Google Page Speed test. If there is something broken after activation, you need to disable this option. Please note that before enabling this sensitive option, it is strongly recommended that you also enable the "Move scripts to the footer" option.', 'sb-pack' ); ?>
+<p>
+<input id="sbp_settings[sbp_prevent_fouc]" name="sbp_settings[sbp_prevent_fouc]" type="checkbox" value="1" <?php checked( 1, isset( $sbp_options['sbp_prevent_fouc'] ) ); ?> />
+<label for="sbp_settings[sbp_prevent_fouc]"><?php _e( 'Eliminate flash of unstyled content (FOUC)', 'sb-pack' ); ?></label>
 </p>
+
+<div class="td-border-last"></div>
+
+<h3><?php _e( 'Exclude styles from asynchronously option: ', 'sb-pack' ); ?></h3>
+<p><textarea cols="50" rows="3" name="sbp_css_exceptions" id="sbp_css_exceptions" value="<?php echo $css_exceptions; ?>" /><?php echo $css_exceptions; ?></textarea></p>
+<p class="description">
+<?php _e('Enter one by line, the handles or css files or the final part of the style URL. For example: font-awesome or font-awesome.min.css', 'sb-pack' ); ?>
+</p>
+
+<div class="td-border-last"></div>
+<h4 class="sbp-icon-information"><?php _e( 'Additional information:', 'sb-pack' ); ?></h4>
+<p class ="description"><strong><?php _e( 'Insert all CSS styles inline to the footer: ', 'sb-pack' ); ?></strong><?php _e( 'this option will eliminate render-blocking CSS warning in Google Page Speed test. If there is something broken after activation, you need to disable this option. Please note that before enabling this sensitive option, it is strongly recommended that you also enable the "Move scripts to the footer" option.', 'sb-pack' ); ?></p>
+<p class ="description"><strong><?php _e( 'Eliminate flash of unstyled content (FOUC): ', 'sb-pack' ); ?></strong><?php _e( 'inserting all CSS styles inline to the footer could create some type of flash of unstyled content(FOUC), i.e. first it shows your site content as though it has not styles then the styled content appear after a very short time (half of second or so). Enabling this option could eliminate this unwanted effect. Please note that this is a beta option so if there is something broken after activation, you need to disable this option.', 'sb-pack' ); ?></p>
+
 
 </div><!-- END sbp-radio-content -->
 </div><!-- END sbp-css-content -->
