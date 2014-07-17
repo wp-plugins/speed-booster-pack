@@ -25,7 +25,7 @@ When visitors lands on your site for the first time, you only have 3 seconds to 
 
 The following video is not about "how to get a score of 100 in Google Page Speed" but want to show the difference in points Before and After activating Speed ​​Booster Pack plugin:
 
-https://www.youtube.com/watch?v=u0G6pk2mX4M
+https://vimeo.com/101019434
 
 = Main Plugin Features =
 
