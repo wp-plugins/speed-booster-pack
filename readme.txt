@@ -69,7 +69,7 @@ https://www.youtube.com/watch?v=u0G6pk2mX4M
 * Added an experimental option to eliminate flash of unstyled content (FOUC) when all CSS styles are inlined to the footer.
 * Translations updated.
 
- 2.2 =
+= 2.2 =
 * Fixed option to disable all CSS Async features on mobile devices.
 * Fixed incompatibility with WPtouch plugin. Thanks to [@DevilIce](http://profiles.wordpress.org/devilice) for the [bug report](http://wordpress.org/support/topic/css-asynchronously-and-wptouch-issue).
 * Updated function wp_is_mobile() on lazy load images to really disabled this feature on mobile devices.
