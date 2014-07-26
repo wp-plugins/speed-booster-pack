@@ -88,15 +88,7 @@ function sbp_prevent_fouc_start() {
 function sbp_prevent_fouc_end() {
 	global $sbp_options;
 	if ( isset( $sbp_options['sbp_css_async'] ) and isset( $sbp_options['sbp_footer_css'] ) and isset ( $sbp_options['sbp_prevent_fouc'] ) ) {
-		echo "<script>
-(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
-</script>
-<script type=\"text/javascript\" >
-$(document).ready(function() {
-loadeddocument();
-});
-</script>
-" ;
+		echo '<style>.no-js{display:block;}</style>' ;
 	}
 }
 
