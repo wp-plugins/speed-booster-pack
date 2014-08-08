@@ -11,10 +11,13 @@ if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
 		public function __construct() {
 
 			global $sbp_options;
-			add_action( 'wp_head', array( $this, 'sbp_prevent_fouc_start' ) );
-			add_action( 'wp_footer', array( $this, 'sbp_prevent_fouc_end' ), SBP_FOOTER_LAST );
             add_action( 'wp_enqueue_scripts',  array( $this, 'sbp_no_more_fontawesome'), 9999 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'sbp_move_scripts_to_footer' ) );
+			if ( !is_admin() and isset( $sbp_options['jquery_to_footer'] ) ) {
+				add_action( 'wp_head', array( $this, 'sbp_scripts_to_head' ) );
+				add_action( 'wp_print_scripts', array( $this, 'sbp_exclude_scripts' ), 100  );
+				add_action( 'wp_enqueue_scripts', array( $this, 'sbp_exclude_scripts' ), 100  );
+			}
 			add_action( 'wp_footer', array( $this, 'sbp_show_page_load_stats' ), 999 );
 			add_action( 'after_setup_theme', array( $this, 'sbp_junk_header_tags' ) );
 	    	add_action( 'init', array( $this, 'sbp_init') );
@@ -71,27 +74,6 @@ if( !class_exists( 'Speed_Booster_Pack_Core' ) ) {
 
 
 		}  //  END public public function __construct
-
-
-/*--------------------------------------------------------------------------------------------------------
-    Prevent Flash of Unstyled Content (FOUC) - BETA
----------------------------------------------------------------------------------------------------------*/
-
-function sbp_prevent_fouc_start() {
-	global $sbp_options;
-	if ( isset( $sbp_options['sbp_css_async'] ) and isset( $sbp_options['sbp_footer_css'] ) and isset ( $sbp_options['sbp_prevent_fouc'] ) ) {
-		echo '<style>.no-js{display:none;}</style>';
-	}
-}
-
-
-function sbp_prevent_fouc_end() {
-	global $sbp_options;
-	if ( isset( $sbp_options['sbp_css_async'] ) and isset( $sbp_options['sbp_footer_css'] ) and isset ( $sbp_options['sbp_prevent_fouc'] ) ) {
-		echo '<style>.no-js{display:block;}</style>' ;
-	}
-}
-
 
 
 /*--------------------------------------------------------------------------------------------------------
@@ -244,6 +226,116 @@ function sbp_move_scripts_to_footer() {
 
 
 /*--------------------------------------------------------------------------------------------------------
+    Exclude scripts from "Move scripts to footer" option
+---------------------------------------------------------------------------------------------------------*/
+
+public function sbp_exclude_scripts() {
+
+
+	 if ( get_option( 'sbp_js_footer_exceptions1' ) ) {
+		$sbp_handle1 = esc_html( get_option( 'sbp_js_footer_exceptions1' ) );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions2' ) ) {
+		$sbp_handle2 = esc_html( get_option( 'sbp_js_footer_exceptions2' ) );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions3' ) ) {
+		$sbp_handle3 = esc_html( get_option( 'sbp_js_footer_exceptions3' ) );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions4' ) ) {
+		$sbp_handle4 = esc_html( get_option( 'sbp_js_footer_exceptions4' ) );
+	}
+
+	$sbp_enq 	= 'enqueued';
+	$sbp_reg 	= 'registered';
+	$sbp_done	= 'done';
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+	if ( get_option( 'sbp_js_footer_exceptions1' ) and wp_script_is( $sbp_handle1 , $sbp_enq ) ) {
+		wp_dequeue_script( $sbp_handle1  );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions2' ) and wp_script_is( $sbp_handle2 , $sbp_enq ) ) {
+		wp_dequeue_script( $sbp_handle2  );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions3' ) and wp_script_is( $sbp_handle3 , $sbp_enq ) ) {
+		wp_dequeue_script( $sbp_handle3  );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions4' ) and wp_script_is( $sbp_handle4 , $sbp_enq ) ) {
+		wp_dequeue_script( $sbp_handle4  );
+	}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+	if ( get_option( 'sbp_js_footer_exceptions1' ) and  wp_script_is( $sbp_handle1 , $sbp_reg ) ) {
+		wp_deregister_script( $sbp_handle1  );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions2' ) and wp_script_is( $sbp_handle2 , $sbp_reg ) ) {
+		wp_deregister_script( $sbp_handle2  );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions3' ) and wp_script_is( $sbp_handle3 , $sbp_reg ) ) {
+		wp_deregister_script( $sbp_handle3  );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions4' ) and wp_script_is( $sbp_handle4 , $sbp_reg ) ) {
+		wp_deregister_script( $sbp_handle4  );
+	}
+
+/*--------------------------------------------------------------------------------------------------------*/
+
+	if ( get_option( 'sbp_js_footer_exceptions1' ) and wp_script_is( $sbp_handle1 , $sbp_done ) ) {
+		wp_deregister_script( $sbp_handle1  );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions2' ) and wp_script_is( $sbp_handle2 , $sbp_done ) ) {
+		wp_deregister_script( $sbp_handle2  );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions3' ) and wp_script_is( $sbp_handle3 , $sbp_done ) ) {
+		wp_deregister_script( $sbp_handle3  );
+	}
+
+	if ( get_option( 'sbp_js_footer_exceptions4' ) and wp_script_is( $sbp_handle4 , $sbp_done ) ) {
+		wp_deregister_script( $sbp_handle4  );
+	}
+
+}
+
+
+/*--------------------------------------------------------------------------------------------------------
+    Put scripts back to the head
+---------------------------------------------------------------------------------------------------------*/
+
+public function sbp_scripts_to_head() {
+
+	if ( get_option( 'sbp_head_html_script1' ) ) {
+		echo  get_option( 'sbp_head_html_script1' ) . "\n";
+
+	}
+
+	if ( get_option( 'sbp_head_html_script2' ) ) {
+		echo get_option( 'sbp_head_html_script2' ) . "\n";
+	}
+
+	if ( get_option( 'sbp_head_html_script3' ) ) {
+		echo get_option( 'sbp_head_html_script3' ) . "\n";
+	}
+
+	if ( get_option( 'sbp_head_html_script4' ) ) {
+		echo get_option( 'sbp_head_html_script4' ) . "\n";
+	}
+
+}
+
+
+/*--------------------------------------------------------------------------------------------------------
     Show Number of Queries and Page Load Time
 ---------------------------------------------------------------------------------------------------------*/
 
@@ -294,16 +386,46 @@ function sbp_css_optimizer() {
 
 
 /*--------------------------------------------------------------------------------------------------------
-    Defer parsing of JavaScript
+    Defer parsing of JavaScript and exclusion files
 ---------------------------------------------------------------------------------------------------------*/
 
 function sbp_defer_parsing_of_js ( $url ) {
+
+	 if ( get_option( 'sbp_defer_exceptions1' ) ) {
+		$defer_exclude1 = get_option( 'sbp_defer_exceptions1' );
+	}
+
+	if ( get_option( 'sbp_defer_exceptions2' ) ) {
+		$defer_exclude2 = get_option( 'sbp_defer_exceptions2' );
+	}
+
+	if ( get_option( 'sbp_defer_exceptions3' ) ) {
+		$defer_exclude3 = get_option( 'sbp_defer_exceptions3' );
+	}
+
+	if ( get_option( 'sbp_defer_exceptions4' ) ) {
+		$defer_exclude4 = get_option( 'sbp_defer_exceptions4' );
+	}
+
 
 	if ( FALSE === strpos( $url, '.js' ) ) {
 		return $url;
 	}
 
-	if ( strpos( $url, 'jquery.js' ) ) {
+
+	if ( get_option( 'sbp_defer_exceptions1' ) and strpos( $url, $defer_exclude1 ) ) {
+		return $url;
+	}
+
+	if ( get_option( 'sbp_defer_exceptions2' ) and strpos( $url, $defer_exclude2 ) ) {
+		return $url;
+	}
+
+	if ( get_option( 'sbp_defer_exceptions3' ) and strpos( $url, $defer_exclude3 ) ) {
+		return $url;
+	}
+
+	if ( get_option( 'sbp_defer_exceptions4' ) and strpos( $url, $defer_exclude4 ) ) {
 		return $url;
 	}
 

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: speed, optimization, performance, scripts to the footer, google libraries, font awesome cdn, defer parsing of javascript, remove query strings, lazy load images, gtmetrix, google pageSpeed, yslow, eliminate external render-blocking javascript and css, compression, async, render-blocking css
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.4
+Stable tag: 2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,12 +61,22 @@ https://www.youtube.com/watch?v=u0G6pk2mX4M
 5. A new sub menu item `Speed Booster Pack` will appear in your main Settings menu.
 
 == Screenshots ==
-1. Plugin options page, simple view (v2.3)
+1. Plugin options page, simple view (v2.5)
+2. The Google Page Speed results on our [testing site](http://tiguandesign.com/testing-speed-booster/) (v2.5)
 
 == Changelog ==
 
+= 2.5 =
+* Added option to exclude certain JS files from being moved to the footer.
+* Added option to exclude certain JS files from being defered.
+* Added a list of handles of all scripts and styles enqueued by your theme, useful for excluding options.
+* Removed FOUC option since is useless with W3 Total Cache.
+* Some visual changes on plugin options page.
+* Translation updated with the new strings.
+* Moved some admin inline scripts to js files.
+
 = 2.4 =
-Fixed TypeError: $ is not a function when Prevent Flash of Unstyled Content (FOUC) option is active. Thanks to [@Marcio Duarte](http://profiles.wordpress.org/pagelab) for the [bug report](http://wordpress.org/support/topic/javascript-error-53).
+* Fixed TypeError: $ is not a function when Prevent Flash of Unstyled Content (FOUC) option is active. Thanks to [@Marcio Duarte](http://profiles.wordpress.org/pagelab) for the [bug report](http://wordpress.org/support/topic/javascript-error-53).
 
 = 2.3 =
 * Added option to exclude certain CSS files from being loaded asynchronously.

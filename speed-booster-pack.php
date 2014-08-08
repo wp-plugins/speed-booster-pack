@@ -3,7 +3,7 @@
 * Plugin Name: Speed Booster Pack
 * Plugin URI: http://wordpress.org/plugins/speed-booster-pack/
 * Description: Speed Booster Pack allows you to improve your page loading speed and get a higher score on the major speed testing services such as <a href="http://gtmetrix.com/">GTmetrix</a>, <a href="http://developers.google.com/speed/pagespeed/insights/">Google PageSpeed</a> or other speed testing tools.
-* Version: 2.4
+* Version: 2.5
 * Author: Tiguan
 * Author URI: http://tiguandesign.com
 * License: GPLv2
@@ -38,7 +38,7 @@ $sbp_options = get_option( 'sbp_settings', 'checked' );	// retrieve the plugin s
 
 define( 'SPEED_BOOSTER_PACK_RELEASE_DATE', date_i18n( 'F j, Y', '1400569200' ) );	// Defining plugin release date
 define( 'SPEED_BOOSTER_PACK_PATH', plugin_dir_path( __FILE__ ) );					// Defining plugin dir path
-define( 'SPEED_BOOSTER_PACK_VERSION', 'v2.4');										// Defining plugin version
+define( 'SPEED_BOOSTER_PACK_VERSION', 'v2.5');										// Defining plugin version
 define( 'SPEED_BOOSTER_PACK_NAME', 'Speed Booster Pack Plugin');					// Defining plugin name
 define( 'SBP_FOOTER', 10 );															// Defining css position
 define( 'SBP_FOOTER_LAST', 99999 );													// Defining css last position
@@ -60,9 +60,10 @@ define( 'SBP_FOOTER_LAST', 99999 );													// Defining css last position
 
 		// Enqueue admin scripts
 		add_action( 'admin_enqueue_scripts', array( $this, 'sbp_admin_enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'sbp_collapsible' ) );
 
 		// load plugin textdomain
-		add_action('init', array( $this, 'sbp_action_init' ) );
+		add_action('plugins_loaded', array( $this, 'sbp_load_translation' ) );
 
 		// Load plugin settings page
 		require_once( SPEED_BOOSTER_PACK_PATH . 'inc/settings.php' );
@@ -92,8 +93,8 @@ define( 'SBP_FOOTER_LAST', 99999 );													// Defining css last position
 	Load plugin textdomain
 -----------------------------------------------------------------------------------------------------------*/
 
-		function sbp_action_init() {
-			load_plugin_textdomain( 'sb-pack', false, SPEED_BOOSTER_PACK_PATH . 'lang' );
+		function sbp_load_translation() {
+			load_plugin_textdomain( 'sb-pack', false, SPEED_BOOSTER_PACK_PATH . '/lang/' );
 		}
 
 
@@ -107,6 +108,13 @@ define( 'SBP_FOOTER_LAST', 99999 );													// Defining css last position
 		$timer_stop = timer_stop( 0, 2 );
 		$get_num_queries = get_num_queries();
 
+		$url = get_site_url();
+        $response = wp_remote_get( $url, array() );
+
+		$get_enqueued_scripts_handle = get_option( 'all_theme_scripts_handle' );
+		$get_enqueued_scripts_src = get_option( 'all_theme_scripts_src' );
+		$get_enqueued_styles_handle = get_option( 'all_theme_styles_handle' );
+
 		if ( get_option('sbp_page_time') == '' ) {
 			update_option( 'sbp_page_time', $timer_stop );
 		}
@@ -114,6 +122,19 @@ define( 'SBP_FOOTER_LAST', 99999 );													// Defining css last position
 		if ( get_option( 'sbp_page_queries') == '' ) {
 			update_option( 'sbp_page_queries', $get_num_queries );
 		}
+
+		if ( get_option( 'all_theme_scripts_handle') == '' ) {
+			update_option( 'all_theme_scripts_handle', $get_enqueued_scripts_handle );
+		}
+
+		if ( get_option( 'all_theme_scripts_src') == '' ) {
+			update_option( 'all_theme_scripts_src', $get_enqueued_scripts_src );
+		}
+
+		if ( get_option( 'all_theme_styles_handle') == '' ) {
+			update_option( 'all_theme_styles_handle', $get_enqueued_styles_handle );
+		}
+
 
 		if ( get_option('sbp_css_async' ) === FALSE ) {
 			update_option( 'sbp_css_async', 1 );
@@ -151,15 +172,33 @@ define( 'SBP_FOOTER_LAST', 99999 );													// Defining css last position
 
 
 /*----------------------------------------------------------------------------------------------------------
-	Enqueue admin scripts
+    Enqueue admin scripts to plugin options page
 -----------------------------------------------------------------------------------------------------------*/
 
-function sbp_admin_enqueue_scripts() {
-	if ( is_admin() ) {
-		// Enqueue scripts for image compression slider
-		wp_enqueue_script( 'jquery-ui-slider' );
-	}
-}
+        public function sbp_admin_enqueue_scripts( $hook_sbp ) {
+            // load scripts only on plugin options page
+            global $sbp_settings_page;
+            if ( $hook_sbp != $sbp_settings_page )
+                return;
+            wp_enqueue_script( 'jquery-ui-slider' );
+            wp_enqueue_script( 'sbp-slide', plugins_url('js/sbp-slide.js', __FILE__ ), array( 'jquery', 'jquery-ui-slider' ), SPEED_BOOSTER_PACK_VERSION, true );
+            wp_enqueue_script( 'sbp-hide', plugins_url('js/sbp-hide.js', __FILE__ ), array( 'jquery' ), SPEED_BOOSTER_PACK_VERSION, true );
+
+        }
+
+
+/*----------------------------------------------------------------------------------------------------------
+    Enqueue script to plugin options page for collapsible options
+-----------------------------------------------------------------------------------------------------------*/
+
+        function sbp_collapsible( $sbp_suffix ) {
+            global $sbp_settings_page;
+            if ( $sbp_suffix != $sbp_settings_page )
+                return;
+                wp_enqueue_script( 'postbox' );
+                wp_enqueue_script( 'postbox-edit', plugins_url('js/post-tabs-edit.js', __FILE__ ), array( 'jquery', 'postbox' ) );
+        }
+
 
 /*----------------------------------------------------------------------------------------------------------
 	Enqueue front end scripts
