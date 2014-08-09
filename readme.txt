@@ -49,7 +49,9 @@ https://www.youtube.com/watch?v=u0G6pk2mX4M
 For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
 
 = Recommended Plugins =
+
 The following are other recommended plugins by the author of Speed Booster Pack:
+
 * [Simple Author Box](http://wordpress.org/plugins/simple-author-box/) - A simple but cool author box with social icons.
 * [Verify Ownership](http://wordpress.org/plugins/verify-ownership/) - Adds meta tag verification codes to your site.
 
