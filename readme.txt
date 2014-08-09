@@ -46,11 +46,15 @@ https://www.youtube.com/watch?v=u0G6pk2mX4M
 * **Displays the number of executed queries** in the plugin options page.
 * **Displays the Peak Memory Used** in the plugin options page.
 
-= Other Notes =
+For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
 
-* For complete usage instructions visit [Plugin Documentation](http://tiguandesign.com/docs/speed-booster/)
-* Translators are welcome! Translations included:
-* *Romanian ro_RO*
+= Recommended Plugins =
+The following are other recommended plugins by the author of Speed Booster Pack:
+* [Simple Author Box](http://wordpress.org/plugins/simple-author-box/) - A simple but cool author box with social icons.
+* [Verify Ownership](http://wordpress.org/plugins/verify-ownership/) - Adds meta tag verification codes to your site.
+
+= Translators are welcome! =
+* Romanian (ro_RO) - [Liviu Costache](http://tiguandesign.com/)
 
 == Installation ==
 
