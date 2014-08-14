@@ -27,8 +27,6 @@ The following video is not about "how to get a score of 100 in Google Page Speed
 
 https://www.youtube.com/watch?v=u0G6pk2mX4M
 
-[This](http://tiguandesign.com/testing-speed-booster) is the website used in the video for testing Speed Booster Pack plugin. Test it yourself!
-
 = Main Plugin Features =
 
 * **Eliminates external render-blocking javascript and css** in above-the-fold content.
