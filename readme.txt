@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: speed, optimization, performance, scripts to the footer, google libraries, font awesome cdn, defer parsing of javascript, remove query strings, lazy load images, gtmetrix, google pageSpeed, yslow, eliminate external render-blocking javascript and css, compression, async, render-blocking css
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.5
+Stable tag: 2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,7 @@ The following are other recommended plugins by the author of Speed Booster Pack:
 
 = Translators are welcome! =
 * Romanian (ro_RO) - [Liviu Costache](http://tiguandesign.com/)
+* Spanish (es_ES) - [Andrew Kurtis](http://www.webhostinghub.com/)
 
 == Installation ==
 
@@ -69,6 +70,9 @@ The following are other recommended plugins by the author of Speed Booster Pack:
 2. The Google Page Speed results on our [testing site](http://tiguandesign.com/testing-speed-booster/) (v2.5)
 
 == Changelog ==
+
+= 2.6 =
+* Added Spanish translation by [Andrew Kurtis](http://www.webhostinghub.com/)
 
 = 2.5 =
 * Added option to exclude certain JS files from being moved to the footer.
